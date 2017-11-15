@@ -17,6 +17,8 @@ public class MainActivity extends AppCompatActivity implements LoginSignUpFragme
 
         getSupportActionBar().hide();
 
+        loginSignUpFragment = new LoginSignUpFragment();
+
         loginSignUpFragment.setAccountSetupListener(this);
         getSupportFragmentManager().beginTransaction().
                 replace(R.id.main_container, loginSignUpFragment).commit();
