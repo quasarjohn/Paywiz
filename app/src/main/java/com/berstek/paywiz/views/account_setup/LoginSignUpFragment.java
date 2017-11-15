@@ -44,7 +44,7 @@ public class LoginSignUpFragment extends Fragment implements View.OnClickListene
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.login_signup, container, false);
+        view = inflater.inflate(R.layout.fragment_login_signup, container, false);
         signupBtn = view.findViewById(R.id.signup_btn);
         signupForm = view.findViewById(R.id.form_signup);
         loginForm = view.findViewById(R.id.form_login);
