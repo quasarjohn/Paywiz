@@ -2,6 +2,7 @@ package com.berstek.paywiz;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.berstek.paywiz.views.account_setup.LoginSignUpFragment;
 import com.berstek.paywiz.models.User;
@@ -19,16 +20,14 @@ public class MainActivity extends AppCompatActivity implements LoginSignUpFragme
 
         loginSignUpFragment = new LoginSignUpFragment();
 
-        loginSignUpFragment.setAccountSetupListener(this);
         getSupportFragmentManager().beginTransaction().
                 replace(R.id.main_container, loginSignUpFragment).commit();
-
-
     }
 
     @Override
     public void onLogin(String username, String password) {
         //TODO log user in
+        Log.d(null, username + password);
     }
 
     @Override
