@@ -1,11 +1,20 @@
 package com.berstek.paywiz.views.account_setup;
 
 
+import com.berstek.paywiz.data_access.UserDA;
+import com.berstek.paywiz.utils.IntentMarker;
+import com.google.android.gms.auth.api.Auth;
+
 import android.animation.Animator;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewCompat;
+import android.transition.TransitionInflater;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -15,17 +24,32 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.berstek.paywiz.R;
 import com.berstek.paywiz.models.User;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class LoginSignUpFragment extends Fragment implements View.OnClickListener,
-        TextView.OnEditorActionListener {
+        TextView.OnEditorActionListener, GoogleApiClient.OnConnectionFailedListener {
 
     private View view;
     private Button signupBtn, loginBtn;
@@ -33,14 +57,17 @@ public class LoginSignUpFragment extends Fragment implements View.OnClickListene
     private EditText username, loginPassword,
             email, signupPassword, signupPasswordConfirm;
 
+    private ImageView googleLoginBtn, fbLoginBtn, logo;
 
-    public interface AccountSetupListener {
-        void onLogin(String username, String password);
+    private FirebaseAuth auth = FirebaseAuth.getInstance();
+    private GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken("1059931264356-b57rsju421bu93p90qcsckn8l1u86ksj.apps.googleusercontent.com")
+            .requestEmail()
+            .build();
 
-        void onSignUp(User user);
-    }
-
+    private GoogleApiClient googleApiClient;
     private AccountSetupListener accountSetupListener;
+    private UserDA userDA = new UserDA();
 
     public LoginSignUpFragment() {
         // Required empty public constructor
@@ -62,12 +89,21 @@ public class LoginSignUpFragment extends Fragment implements View.OnClickListene
         email = view.findViewById(R.id.signup_email);
         signupPassword = view.findViewById(R.id.signup_password);
         signupPasswordConfirm = view.findViewById(R.id.signup_password_confirm);
+        googleLoginBtn = view.findViewById(R.id.login_google);
+        logo = view.findViewById(R.id.logo);
 
         signupBtn.setOnClickListener(this);
         loginBtn.setOnClickListener(this);
+        googleLoginBtn.setOnClickListener(this);
 
         loginPassword.setOnEditorActionListener(this);
         signupPasswordConfirm.setOnEditorActionListener(this);
+
+        //init google login
+        googleApiClient = new GoogleApiClient.Builder(getActivity())
+                .enableAutoManage(getActivity() /* FragmentActivity */, this /* OnConnectionFailedListener */)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
 
         return view;
     }
@@ -77,9 +113,14 @@ public class LoginSignUpFragment extends Fragment implements View.OnClickListene
         switch (view.getId()) {
             case R.id.signup_btn:
                 rippleSignUp();
+
+
                 break;
             case R.id.login_btn:
                 rippleLogin();
+                break;
+            case R.id.login_google:
+                googleLogin();
                 break;
             default:
                 break;
@@ -108,6 +149,100 @@ public class LoginSignUpFragment extends Fragment implements View.OnClickListene
     public void onAttach(Context context) {
         super.onAttach(context);
         accountSetupListener = (AccountSetupListener) context;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == IntentMarker.RC_GOGGLE_SIGNIN) {
+            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+            handleSignInResult(result);
+        }
+    }
+
+    private WelcomeFragment welcomeFragment;
+
+    private void handleSignInResult(GoogleSignInResult result) {
+
+        welcomeFragment = new WelcomeFragment();
+        if (result.isSuccess()) {
+
+            setSharedElementReturnTransition(TransitionInflater.from(
+                    getActivity()).inflateTransition(R.transition.change_image_trans));
+            setExitTransition(TransitionInflater.from(
+                    getActivity()).inflateTransition(android.R.transition.move));
+
+            welcomeFragment.setSharedElementEnterTransition(TransitionInflater.from(
+                    getActivity()).inflateTransition(R.transition.change_image_trans));
+            welcomeFragment.setEnterTransition(TransitionInflater.from(
+                    getActivity()).inflateTransition(android.R.transition.move));
+
+            getFragmentManager().beginTransaction().
+                    addSharedElement(logo, "logo_trans").
+                    addToBackStack(null).
+                    replace(R.id.main_container, welcomeFragment).
+                    commit();
+
+            // Signed in successfully, show authenticated UI.
+            GoogleSignInAccount acct = result.getSignInAccount();
+            firebaseAuthWithGoogle(acct);
+
+            Log.wtf(null, "LOGGED IN");
+        } else {
+            // Signed out, show unauthenticated UI.
+            Log.wtf(null, "LOGGED OUT");
+
+        }
+    }
+
+    private void firebaseAuthWithGoogle(final GoogleSignInAccount acct) {
+        Log.d(null, "firebaseAuthWithGoogle:" + acct.getId());
+
+        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
+        auth.signInWithCredential(credential)
+                .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+
+                            final FirebaseUser firebaseUser = auth.getCurrentUser();
+                            Log.wtf(null, firebaseUser.getPhotoUrl().toString());
+
+
+                            //check if user exists, if false, add user info to database
+                            userDA.getUser(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    //means the user does not exist so create it
+                                    if (dataSnapshot.getChildrenCount() == 0) {
+                                        User user = new User();
+                                        user.setFirstname(acct.getGivenName());
+                                        user.setLastname(acct.getFamilyName());
+                                        user.setDate_created(System.currentTimeMillis());
+                                        user.setEmail(firebaseUser.getEmail());
+                                        user.setPhoto_url(acct.getPhotoUrl().toString());
+
+                                        userDA.addUser(firebaseUser.getUid(), user);
+
+                                        welcomeFragment.onUserQueried(user);
+                                    } else {
+                                        //user exists, just query data
+                                        for (DataSnapshot child : dataSnapshot.getChildren()) {
+                                            User user = child.getValue(User.class);
+                                            welcomeFragment.onUserQueried(user);
+                                        }
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+
+                                }
+                            });
+                        }
+                    }
+                });
     }
 
     private void rippleLogin() {
@@ -182,6 +317,28 @@ public class LoginSignUpFragment extends Fragment implements View.OnClickListene
 
             }
         });
+    }
+
+
+    private void googleLogin() {
+        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
+        startActivityForResult(signInIntent, IntentMarker.RC_GOGGLE_SIGNIN);
+    }
+
+    private void fbLogin() {
+
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
+
+
+    public interface AccountSetupListener {
+        void onLogin(String username, String password);
+
+        void onSignUp(User user);
     }
 
 }
