@@ -1,10 +1,9 @@
 package com.berstek.paywiz;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 
-import com.berstek.paywiz.views.ViewPagerFragment;
 import com.berstek.paywiz.views.account_setup.LoginSignUpFragment;
 import com.berstek.paywiz.models.User;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,16 +23,17 @@ public class MainActivity extends AppCompatActivity implements LoginSignUpFragme
             //redirect to login page
             getSupportFragmentManager().beginTransaction().
                     add(R.id.main_container, new LoginSignUpFragment()).commit();
-        else
-            //direct to home page
-            getSupportFragmentManager().beginTransaction().
-                    add(R.id.main_container, new ViewPagerFragment()).commit();
+        else {
+            Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+            startActivity(intent);
+        }
+
     }
 
     @Override
     public void onLogin(String username, String password) {
-        getSupportFragmentManager().beginTransaction().
-                replace(R.id.main_container, new ViewPagerFragment()).commit();
+        Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+        startActivity(intent);
     }
 
     @Override

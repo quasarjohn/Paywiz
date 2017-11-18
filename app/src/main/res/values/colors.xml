@@ -10,9 +10,9 @@
     <!--<color name="custom_light_blue">#63b6e5</color>-->
 
     <color name="colorPrimary">#4caf50</color>
-    <color name="colorPrimaryDark">#46a049</color>
+    <color name="colorPrimaryDark">#087f23</color>
     <color name="colorAccent">#ffa726</color>
-    <color name="colorAccentDark">#ffa31a</color>
+    <color name="colorAccentDark">#c77800</color>
 
     <color name="custom_light_gray">#93cf96</color>
     <color name="custom_dark_gray">#737373</color>

@@ -5,6 +5,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
@@ -22,6 +23,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.berstek.paywiz.HomeActivity;
 import com.berstek.paywiz.R;
 import com.berstek.paywiz.callbacks.OnUserQueriedListener;
 import com.berstek.paywiz.data_access.UserDA;
@@ -36,7 +38,8 @@ import com.google.firebase.database.ValueEventListener;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class WelcomeFragment extends Fragment implements OnUserQueriedListener, View.OnClickListener {
+public class WelcomeFragment extends Fragment implements OnUserQueriedListener,
+        View.OnClickListener {
 
     private View view;
     private ImageView dp, logo;
@@ -78,7 +81,7 @@ public class WelcomeFragment extends Fragment implements OnUserQueriedListener, 
 
         TransitionManager.beginDelayedTransition(constraintLayout);
         ConstraintLayout.LayoutParams lparams = (ConstraintLayout.LayoutParams) logo.getLayoutParams();
-        lparams.verticalBias = 0.12f;
+        lparams.verticalBias = 0.05f;
         logo.setLayoutParams(lparams);
 
         dp.setVisibility(View.VISIBLE);
@@ -91,6 +94,7 @@ public class WelcomeFragment extends Fragment implements OnUserQueriedListener, 
 
     @Override
     public void onClick(View view) {
-
+        Intent intent = new Intent(getContext(), HomeActivity.class);
+        startActivity(intent);
     }
 }
