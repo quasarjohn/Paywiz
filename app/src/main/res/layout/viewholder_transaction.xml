@@ -10,8 +10,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="5dp"
-        android:elevation="10dp"
         card_view:cardCornerRadius="7dp"
+        card_view:cardElevation="5dp"
+        card_view:cardPreventCornerOverlap="false"
         tools:layout_width="match_parent">
 
 
@@ -23,9 +24,10 @@
 
             <ImageView
                 android:id="@+id/transaction_img"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="150dp"
                 android:background="@color/cardview_dark_background"
+                android:scaleType="fitXY"
                 card_view:layout_constraintEnd_toEndOf="parent"
                 card_view:layout_constraintStart_toStartOf="parent"
                 card_view:layout_constraintTop_toTopOf="parent"
