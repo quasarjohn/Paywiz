@@ -15,6 +15,8 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.berstek.paywiz.views.home.HomeViewPagerFragment;
+
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
@@ -43,6 +45,9 @@ public class HomeActivity extends AppCompatActivity
         appTitle = findViewById(R.id.app_title);
 
         searchBtn.setOnClickListener(this);
+
+        getSupportFragmentManager().beginTransaction().
+                add(R.id.home_content, new HomeViewPagerFragment()).commit();
     }
 
     @Override
