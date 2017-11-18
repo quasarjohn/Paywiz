@@ -113,8 +113,6 @@ public class LoginSignUpFragment extends Fragment implements View.OnClickListene
         switch (view.getId()) {
             case R.id.signup_btn:
                 rippleSignUp();
-
-
                 break;
             case R.id.login_btn:
                 rippleLogin();

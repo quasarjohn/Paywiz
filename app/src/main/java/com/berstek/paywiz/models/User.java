@@ -11,7 +11,7 @@ public class User {
     private String email;
     private String photo_url;
     private long date_created;
-
+    private String pay_id;
 
     public String getLastname() {
         return lastname;
@@ -67,5 +67,13 @@ public class User {
 
     public void setPhoto_url(String photo_url) {
         this.photo_url = photo_url;
+    }
+
+    public String getPay_id() {
+        return pay_id;
+    }
+
+    public void setPay_id(String pay_id) {
+        this.pay_id = pay_id;
     }
 }

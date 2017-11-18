@@ -44,6 +44,7 @@
                     app:layout_constraintVertical_bias="0.100000024">
 
                     <TextView
+                        android:layout_gravity="center"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="8dp"
@@ -52,7 +53,7 @@
                         android:text="PHP"
                         android:textAlignment="center"
                         android:textColor="@android:color/white"
-                        android:textSize="25sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -75,7 +76,8 @@
                     tools:layout_editor_absoluteY="79dp" />
 
                 <ImageView
-                    android:id="@+id/imageView2"
+                    android:foreground="@drawable/ripple_rect"
+                    android:id="@+id/send"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginBottom="8dp"
@@ -83,7 +85,7 @@
                     android:layout_marginTop="8dp"
                     android:src="@mipmap/ic_launcher"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/imageView3"
+                    app:layout_constraintEnd_toStartOf="@+id/receive"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintHorizontal_chainStyle="spread"
                     app:layout_constraintStart_toStartOf="parent"
@@ -91,35 +93,38 @@
                     app:layout_constraintVertical_bias="0.8" />
 
                 <ImageView
-                    android:id="@+id/imageView3"
+                    android:foreground="@drawable/ripple_rect"
+                    android:id="@+id/receive"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginBottom="8dp"
                     android:layout_marginTop="8dp"
                     android:src="@mipmap/ic_launcher"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/imageView4"
+                    app:layout_constraintEnd_toStartOf="@+id/cashin"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/imageView2"
+                    app:layout_constraintStart_toEndOf="@+id/send"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.8" />
 
                 <ImageView
-                    android:id="@+id/imageView4"
+                    android:foreground="@drawable/ripple_rect"
+                    android:id="@+id/cashin"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginBottom="8dp"
                     android:layout_marginTop="8dp"
                     android:src="@mipmap/ic_launcher"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/imageView5"
+                    app:layout_constraintEnd_toStartOf="@+id/cashout"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/imageView3"
+                    app:layout_constraintStart_toEndOf="@+id/receive"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.8" />
 
                 <ImageView
-                    android:id="@+id/imageView5"
+                    android:foreground="@drawable/ripple_rect"
+                    android:id="@+id/cashout"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginBottom="8dp"
@@ -129,7 +134,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/imageView4"
+                    app:layout_constraintStart_toEndOf="@+id/cashin"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.8" />
 
@@ -144,9 +149,9 @@
                     android:text="Send"
                     android:textColor="@android:color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/imageView2"
-                    app:layout_constraintStart_toStartOf="@+id/imageView2"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+                    app:layout_constraintEnd_toEndOf="@+id/send"
+                    app:layout_constraintStart_toStartOf="@+id/send"
+                    app:layout_constraintTop_toBottomOf="@+id/send" />
 
                 <TextView
                     android:id="@+id/textView6"
@@ -158,9 +163,9 @@
                     android:textAlignment="center"
                     android:textColor="@android:color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/imageView3"
-                    app:layout_constraintStart_toStartOf="@+id/imageView3"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+                    app:layout_constraintEnd_toEndOf="@+id/receive"
+                    app:layout_constraintStart_toStartOf="@+id/receive"
+                    app:layout_constraintTop_toBottomOf="@+id/receive" />
 
                 <TextView
                     android:id="@+id/textView7"
@@ -171,9 +176,9 @@
                     android:text="Cash In"
                     android:textColor="@android:color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/imageView4"
-                    app:layout_constraintStart_toStartOf="@+id/imageView4"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+                    app:layout_constraintEnd_toEndOf="@+id/cashin"
+                    app:layout_constraintStart_toStartOf="@+id/cashin"
+                    app:layout_constraintTop_toBottomOf="@+id/cashin" />
 
                 <TextView
                     android:id="@+id/textView8"
@@ -184,21 +189,57 @@
                     android:text="Cash Out"
                     android:textColor="@android:color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/imageView5"
-                    app:layout_constraintStart_toStartOf="@+id/imageView5"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+                    app:layout_constraintEnd_toEndOf="@+id/cashout"
+                    app:layout_constraintStart_toStartOf="@+id/cashout"
+                    app:layout_constraintTop_toBottomOf="@+id/cashout" />
 
             </android.support.constraint.ConstraintLayout>
 
-
         </android.support.design.widget.CollapsingToolbarLayout>
+
+
+        <LinearLayout
+            android:gravity="center"
+            android:background="@android:color/white"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_marginLeft="8dp"
+                android:background="@color/colorPrimary"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="2dp" />
+
+            <TextView
+                android:textStyle="bold"
+                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:gravity="center"
+                android:text="Current Transactions"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_marginRight="8dp"
+                android:background="@color/colorPrimary"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="2dp" />
+
+        </LinearLayout>
     </android.support.design.widget.AppBarLayout>
 
+
     <android.support.v7.widget.RecyclerView
-        android:background="@android:color/white"
         android:id="@+id/recview_transactions"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"></android.support.v7.widget.RecyclerView>
 
 </android.support.design.widget.CoordinatorLayout>

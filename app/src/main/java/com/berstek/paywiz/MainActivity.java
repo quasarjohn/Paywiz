@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity implements LoginSignUpFragme
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         getSupportActionBar().hide();
 
         if (auth.getCurrentUser() == null)

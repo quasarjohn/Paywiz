@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.berstek.paywiz.R;
 import com.berstek.paywiz.models.Transaction;
@@ -17,10 +18,11 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TransactionsFragment extends Fragment {
+public class TransactionsFragment extends Fragment implements View.OnClickListener {
 
     private View view;
     private RecyclerView recyclerView;
+    private ImageView cashin, cashout, send, receive;
 
     public TransactionsFragment() {
         // Required empty public constructor
@@ -32,13 +34,28 @@ public class TransactionsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_transactions, container, false);
+
+        cashin = view.findViewById(R.id.cashin);
+        cashout = view.findViewById(R.id.cashout);
+        send = view.findViewById(R.id.send);
+        receive = view.findViewById(R.id.receive);
+
         recyclerView = view.findViewById(R.id.recview_transactions);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        cashin.setOnClickListener(this);
+        cashout.setOnClickListener(this);
+        send.setOnClickListener(this);
+        receive.setOnClickListener(this);
+
+        loadTransactions();
+
+        return view;
+    }
+
+    private void loadTransactions() {
         //TODO fetch data from database
-
         ArrayList<Transaction> transactions = new ArrayList<>();
-
         Transaction transaction = new Transaction();
 
         for (int i = 0; i < 20; i++) {
@@ -47,8 +64,21 @@ public class TransactionsFragment extends Fragment {
 
         TransactionsAdapter adapter = new TransactionsAdapter(getContext(), transactions);
         recyclerView.setAdapter(adapter);
-
-        return view;
     }
 
+    @Override
+    public void onClick(View view) {
+        //TODO function for each button
+        int id = view.getId();
+
+        if (id == R.id.send) {
+
+        } else if (id == R.id.receive) {
+
+        } else if (id == R.id.cashin) {
+
+        } else if (id == R.id.cashout) {
+
+        }
+    }
 }
