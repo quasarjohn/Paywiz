@@ -63,16 +63,6 @@
                 card_view:layout_constraintEnd_toEndOf="parent"
                 card_view:layout_constraintStart_toStartOf="parent" />
 
-            <ImageView
-                android:id="@+id/user_image"
-                android:layout_width="35"
-                android:layout_height="35"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                card_view:layout_constraintStart_toStartOf="parent"
-                card_view:layout_constraintTop_toBottomOf="@+id/transaction_img"
-                card_view:srcCompat="@color/cardview_dark_background" />
-
             <TextView
                 android:id="@+id/name_textview"
                 android:layout_width="wrap_content"
@@ -83,7 +73,7 @@
                 android:textColor="@color/cardview_dark_background"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                card_view:layout_constraintStart_toEndOf="@+id/user_image"
+                card_view:layout_constraintStart_toEndOf="@+id/profile_image"
                 card_view:layout_constraintTop_toBottomOf="@+id/product_quality_textview" />
 
             <TextView
@@ -93,7 +83,7 @@
                 android:layout_marginStart="4dp"
                 android:text="Seller"
                 android:textSize="11sp"
-                card_view:layout_constraintStart_toEndOf="@+id/user_image"
+                card_view:layout_constraintStart_toEndOf="@+id/profile_image"
                 card_view:layout_constraintTop_toBottomOf="@+id/name_textview" />
 
             <TextView
@@ -115,8 +105,8 @@
 
             <ImageView
                 android:id="@+id/like"
-                android:layout_width="16"
-                android:layout_height="16"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
                 android:layout_marginStart="8dp"
                 android:background="@drawable/like_button"
                 android:backgroundTint="@color/colorPrimary"
@@ -138,8 +128,8 @@
 
             <ImageView
                 android:id="@+id/unlike"
-                android:layout_width="16"
-                android:layout_height="16"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
                 android:layout_marginStart="8dp"
                 android:background="@drawable/unlike_button"
                 android:backgroundTint="@color/colorAccentDark"
@@ -162,43 +152,46 @@
                 android:id="@+id/courier_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="32dp"
                 android:text="Courier"
                 android:textSize="11sp"
                 card_view:layout_constraintEnd_toStartOf="@+id/transaction_date_textview"
                 card_view:layout_constraintStart_toStartOf="parent"
-                card_view:layout_constraintTop_toBottomOf="@+id/user_image" />
+                card_view:layout_constraintTop_toBottomOf="@+id/profile_image" />
 
             <TextView
                 android:id="@+id/transaction_date_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
                 android:layout_marginTop="32dp"
                 android:text="Transaction Date"
                 android:textSize="11sp"
                 card_view:layout_constraintEnd_toStartOf="@+id/shipped_date_textview"
                 card_view:layout_constraintHorizontal_bias="0.5"
                 card_view:layout_constraintStart_toEndOf="@+id/courier_textview"
-                card_view:layout_constraintTop_toBottomOf="@+id/user_image" />
+                card_view:layout_constraintTop_toBottomOf="@+id/profile_image" />
 
             <TextView
                 android:id="@+id/shipped_date_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
                 android:layout_marginTop="32dp"
                 android:text="Shipped Date"
                 android:textSize="11sp"
                 card_view:layout_constraintEnd_toEndOf="parent"
                 card_view:layout_constraintHorizontal_bias="0.5"
                 card_view:layout_constraintStart_toEndOf="@+id/transaction_date_textview"
-                card_view:layout_constraintTop_toBottomOf="@+id/user_image" />
+                card_view:layout_constraintTop_toBottomOf="@+id/profile_image" />
 
             <TextView
                 android:id="@+id/courier_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
+                android:layout_marginStart="30dp"
                 android:text="LBC Express"
                 android:textSize="11sp"
                 android:textStyle="bold"
@@ -235,7 +228,7 @@
             <ImageView
                 android:id="@+id/horizontal_line"
                 android:layout_width="0dp"
-                android:layout_height="1"
+                android:layout_height="1dp"
                 android:layout_marginEnd="25dp"
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="20dp"
@@ -281,7 +274,7 @@
 
             <TextView
                 android:id="@+id/to_value"
-                android:layout_width="150"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="Lot 8c Dianeville, Mc Divitt Ext., Dona Faustina 1 Subd., Tandang Sora Quezon City, Metro Manila Philippines"
@@ -289,6 +282,18 @@
                 android:textStyle="bold"
                 card_view:layout_constraintStart_toStartOf="@+id/to_textview"
                 card_view:layout_constraintTop_toBottomOf="@+id/to_textview" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_image"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/ic_placeholder"
+                card_view:civ_border_color="#FF000000"
+                card_view:civ_border_width="0dp"
+                card_view:layout_constraintStart_toStartOf="parent"
+                card_view:layout_constraintTop_toBottomOf="@+id/transaction_img" />
 
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>
