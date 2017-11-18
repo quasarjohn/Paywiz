@@ -12,9 +12,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 public class HomeActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+
+    private ImageView searchBtn;
+    private TextView appTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +37,12 @@ public class HomeActivity extends AppCompatActivity
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        setTitle("PayWiz");
+        //Wire views
+
+        searchBtn = findViewById(R.id.search_btn);
+        appTitle = findViewById(R.id.app_title);
+
+        searchBtn.setOnClickListener(this);
     }
 
     @Override
@@ -67,5 +77,12 @@ public class HomeActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view.getId() == R.id.search_btn) {
+            //TODO open search dialog fragment
+        }
     }
 }

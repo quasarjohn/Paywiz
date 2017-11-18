@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1059931264356",
+    "firebase_url": "https://paywiz-b98fb.firebaseio.com",
+    "project_id": "paywiz-b98fb",
+    "storage_bucket": "paywiz-b98fb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1059931264356:android:b9629b049478de2a",
+        "android_client_info": {
+          "package_name": "com.berstek.paywiz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1059931264356-d79d9ioljn0fr7omsngae20buut9qm7h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.berstek.paywiz",
+            "certificate_hash": "8db0d63de64616e770dfc76902b25a53c89146ac"
+          }
+        },
+        {
+          "client_id": "1059931264356-b57rsju421bu93p90qcsckn8l1u86ksj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0SlMxOg-iYFO8_zqUZkMAGj7WlYb2x2U"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1059931264356-b57rsju421bu93p90qcsckn8l1u86ksj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
