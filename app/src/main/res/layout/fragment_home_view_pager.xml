@@ -6,13 +6,14 @@
     android:orientation="vertical"
     tools:context="com.berstek.paywiz.views.home.HomeViewPagerFragment">
 
-
-
     <android.support.design.widget.TabLayout
+        app:tabTextColor="@android:color/white"
+        android:background="@color/colorPrimary"
         android:id="@+id/tab"
         android:layout_width="match_parent"
-        android:layout_height="35dp"
-        app:tabIndicatorColor="@color/colorPrimary"
+        android:layout_height="40dp"
+        app:tabSelectedTextColor="@android:color/white"
+        app:tabIndicatorColor="@color/colorAccent"
         app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget" />
 
     <android.support.v4.view.ViewPager

@@ -66,8 +66,8 @@ public class HomeViewPagerFragment extends Fragment {
         tabLayout.getTabAt(1).setText("History");
         tabLayout.getTabAt(2).setText("Contacts");
 
-        tabLayout.setTabTextColors(Color.parseColor("#737373"),
-                Color.parseColor("#4caf50"));
+//        tabLayout.setTabTextColors(Color.parseColor("#737373"),
+//                Color.parseColor("#4caf50"));
 
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {

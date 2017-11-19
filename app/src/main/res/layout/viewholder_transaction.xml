@@ -7,18 +7,19 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:background="@android:color/white"
+    android:layout_marginBottom="16dp"
     app:cardUseCompatPadding="false"
     card_view:cardCornerRadius="0dp"
     card_view:cardElevation="0dp"
     card_view:cardPreventCornerOverlap="false"
     tools:layout_width="match_parent">
 
-
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="0dp"
-        android:paddingBottom="15dp">
+        android:paddingBottom="16dp"
+        >
 
         <ImageView
             android:id="@+id/transaction_img"
@@ -35,7 +36,7 @@
             android:layout_width="0dp"
             android:layout_height="22dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="16dp"
             android:text="Asus Zenfone 3 Max"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -52,9 +53,11 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:text="2nd Hand"
+            android:layout_marginStart="16dp"
+            android:text="Awaiting Acceptance"
+            android:textColor="@color/custom_red"
             android:textSize="11sp"
+            android:textStyle="bold"
             card_view:layout_constraintBottom_toBottomOf="@+id/transaction_img"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toStartOf="parent" />
@@ -86,16 +89,15 @@
             android:id="@+id/price_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="8dp"
-
-            android:background="@drawable/oval"
-            android:backgroundTint="@color/colorAccentDark"
+            android:layout_marginEnd="16dp"
+            android:paddingBottom="3dp"
             android:paddingEnd="8dp"
             android:paddingStart="8dp"
-            android:text="-Php 7,550"
-            android:textColor="@android:color/white"
+            android:paddingTop="3dp"
+            android:text="-PHP 7,550"
+            android:textColor="@color/custom_red"
             android:textSize="20sp"
+            android:textStyle="bold"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintTop_toBottomOf="@+id/transaction_img" />
 
@@ -128,7 +130,7 @@
             android:layout_height="16dp"
             android:layout_marginStart="8dp"
             android:background="@drawable/unlike_button"
-            android:backgroundTint="@color/colorAccentDark"
+            android:backgroundTint="@color/custom_red"
             card_view:layout_constraintStart_toEndOf="@+id/like_value"
             card_view:layout_constraintTop_toBottomOf="@+id/name_textview" />
 
@@ -139,7 +141,7 @@
             android:layout_marginStart="2dp"
             android:layout_marginTop="1dp"
             android:text="2"
-            android:textColor="@color/colorAccentDark"
+            android:textColor="@color/custom_red"
             android:textSize="11sp"
             card_view:layout_constraintStart_toEndOf="@+id/unlike"
             card_view:layout_constraintTop_toBottomOf="@+id/name_textview" />
@@ -150,7 +152,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             android:text="Courier"
             android:textSize="11sp"
             card_view:layout_constraintEnd_toStartOf="@+id/transaction_date_textview"
@@ -162,7 +164,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             android:text="Transaction Date"
             android:textSize="11sp"
             card_view:layout_constraintEnd_toStartOf="@+id/shipped_date_textview"
@@ -175,8 +177,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
-            android:layout_marginTop="24dp"
-            android:text="Shipped Date"
+            android:layout_marginTop="16dp"
+            android:text="Date Shipped"
             android:textSize="11sp"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintHorizontal_bias="0.5"
@@ -199,9 +201,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="November 13, 2017"
-            android:textColor="@color/colorPrimary"
             android:textSize="11sp"
             android:textStyle="bold"
+            android:layout_marginBottom="16dp"
             card_view:layout_constraintEnd_toEndOf="@+id/transaction_date_textview"
             card_view:layout_constraintStart_toStartOf="@+id/transaction_date_textview"
             card_view:layout_constraintTop_toBottomOf="@+id/transaction_date_textview" />
@@ -210,82 +212,19 @@
             android:id="@+id/shipped_date_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Waiting to be shipped"
-            android:textColor="@color/colorAccentDark"
+            android:text="------------------"
+            android:textColor="@color/custom_red"
             android:textSize="11sp"
             android:textStyle="bold"
             card_view:layout_constraintEnd_toEndOf="@+id/shipped_date_textview"
             card_view:layout_constraintStart_toStartOf="@+id/shipped_date_textview"
             card_view:layout_constraintTop_toBottomOf="@+id/shipped_date_textview" />
 
-        <ImageView
-            android:id="@+id/horizontal_line"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginEnd="25dp"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="20dp"
-            android:elevation="5dp"
-            android:visibility="gone"
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/transaction_date_value"
-            card_view:srcCompat="?attr/colorButtonNormal" />
-
-        <TextView
-            android:id="@+id/from_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="From"
-            android:textSize="11sp"
-            android:visibility="gone"
-            card_view:layout_constraintStart_toStartOf="@+id/horizontal_line"
-            card_view:layout_constraintTop_toBottomOf="@+id/horizontal_line" />
-
-        <TextView
-            android:id="@+id/to_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="12dp"
-            android:text="To"
-            android:textSize="11sp"
-            android:visibility="gone"
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintStart_toEndOf="@+id/from_textview"
-            card_view:layout_constraintTop_toBottomOf="@+id/horizontal_line" />
-
-        <TextView
-            android:id="@+id/from_value"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="Rm. 803, New Star Building., Central Condominium, Quezon City, Metro Manila, Philippines"
-            android:textSize="11sp"
-            android:textStyle="bold"
-            android:visibility="gone"
-            card_view:layout_constraintStart_toStartOf="@+id/from_textview"
-            card_view:layout_constraintTop_toBottomOf="@+id/from_textview" />
-
-        <TextView
-            android:id="@+id/to_value"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="Lot 8c Dianeville, Mc Divitt Ext., Dona Faustina 1 Subd., Tandang Sora Quezon City, Metro Manila Philippines"
-            android:textSize="11sp"
-            android:textStyle="bold"
-            android:visibility="gone"
-            card_view:layout_constraintStart_toStartOf="@+id/to_textview"
-            card_view:layout_constraintTop_toBottomOf="@+id/to_textview" />
-
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_image"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:src="@drawable/ic_placeholder"
             card_view:civ_border_color="#FF000000"
@@ -295,10 +234,10 @@
 
     </android.support.constraint.ConstraintLayout>
 
-    <TextView
-        android:layout_gravity="bottom"
-        android:background="@color/colorPrimary"
-        android:layout_width="match_parent"
-        android:layout_height="2dp" />
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="2dp"-->
+        <!--android:layout_gravity="bottom"-->
+        <!--android:background="@android:color/darker_gray" />-->
 </android.support.v7.widget.CardView>
 
