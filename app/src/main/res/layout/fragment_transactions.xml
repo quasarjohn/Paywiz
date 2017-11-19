@@ -236,10 +236,12 @@
 
 
     <android.support.v7.widget.RecyclerView
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
         android:id="@+id/recview_transactions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/white"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"></android.support.v7.widget.RecyclerView>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
 </android.support.design.widget.CoordinatorLayout>

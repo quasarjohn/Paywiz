@@ -11,9 +11,6 @@ import com.berstek.paywiz.models.User;
 
 import java.util.ArrayList;
 
-/**
- * Created by Berstek on 11/18/2017.
- */
 
 public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ListHolder> {
 

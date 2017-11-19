@@ -11,9 +11,6 @@ import com.berstek.paywiz.models.Transaction;
 
 import java.util.ArrayList;
 
-/**
- * Created by Berstek on 11/18/2017.
- */
 
 public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsAdapter.ListHolder> {
 
@@ -30,7 +27,7 @@ public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsAdapte
 
     @Override
     public ListHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.viewholder_placeholder, parent, false);
+        View view = inflater.inflate(R.layout.viewholder_transaction, parent, false);
         return new ListHolder(view);
     }
 

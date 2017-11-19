@@ -1,9 +1,5 @@
 package com.berstek.paywiz.models;
 
-/**
- * Created by Berstek on 11/18/2017.
- */
-
 public class Transaction {
 
     private String title, detail;

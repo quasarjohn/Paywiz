@@ -6,9 +6,6 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.view.View;
 
-/**
- * Created by Berstek on 11/16/2017.
- */
 
 public class CustomAnimator {
 

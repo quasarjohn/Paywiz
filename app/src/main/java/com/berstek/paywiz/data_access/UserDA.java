@@ -5,9 +5,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
-/**
- * Created by Berstek on 11/16/2017.
- */
 
 public class UserDA {
 
