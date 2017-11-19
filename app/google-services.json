@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1059931264356-skpfbdr2maljcden29atj724a311rv1q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.berstek.paywiz",
+            "certificate_hash": "5844178e1ba581c787a694ff93427c8937314c6d"
+          }
+        },
+        {
           "client_id": "1059931264356-d79d9ioljn0fr7omsngae20buut9qm7h.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
