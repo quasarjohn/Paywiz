@@ -1,39 +1,25 @@
 package com.berstek.paywiz.views.account_setup;
 
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
-import android.transition.TransitionInflater;
 import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
-import android.view.animation.AnimationUtils;
-import android.view.animation.Transformation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.berstek.paywiz.HomeActivity;
+import com.berstek.paywiz.views.home.HomeActivity;
 import com.berstek.paywiz.R;
 import com.berstek.paywiz.callbacks.OnUserQueriedListener;
-import com.berstek.paywiz.data_access.UserDA;
 import com.berstek.paywiz.models.User;
 import com.berstek.paywiz.utils.CustomAnimator;
 import com.bumptech.glide.Glide;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.ValueEventListener;
 
 /**
  * A simple {@link Fragment} subclass.

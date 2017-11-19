@@ -17,8 +17,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".HomeActivity"
+            android:name=".views.home.HomeActivity"
             android:label="@string/title_activity_home"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".views.user_profile.ProfileActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
