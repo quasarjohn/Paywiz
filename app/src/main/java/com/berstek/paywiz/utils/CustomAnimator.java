@@ -29,4 +29,6 @@ public class CustomAnimator {
         mAnimationSet.start();
         return mAnimationSet;
     }
+
+
 }
