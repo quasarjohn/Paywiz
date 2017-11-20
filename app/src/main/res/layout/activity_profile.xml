@@ -154,7 +154,7 @@
 
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recview_transactions"
+        android:id="@+id/recview_feedbacks"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorBackgroundMaterial"

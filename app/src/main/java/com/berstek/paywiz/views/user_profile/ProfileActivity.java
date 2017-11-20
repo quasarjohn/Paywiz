@@ -10,8 +10,10 @@ import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 
 import com.berstek.paywiz.R;
+import com.berstek.paywiz.models.Feedback;
 import com.berstek.paywiz.models.Transaction;
 import com.berstek.paywiz.utils.CustomImageUtils;
+import com.berstek.paywiz.views.feedback.FeedbacksAdapter;
 import com.berstek.paywiz.views.transactions.TransactionsAdapter;
 
 import java.util.ArrayList;
@@ -45,23 +47,23 @@ public class ProfileActivity extends AppCompatActivity {
                 15, ProfileActivity.this);
         dpBlurred.setImageBitmap(blurred);
 
-        recyclerView = findViewById(R.id.recview_transactions);
+        recyclerView = findViewById(R.id.recview_feedbacks);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 //
-        loadTransactions();
+        loadFeedbacks();
     }
 
 
-    private void loadTransactions() {
+    private void loadFeedbacks() {
         //TODO fetch data from database
-        ArrayList<Transaction> transactions = new ArrayList<>();
-        Transaction transaction = new Transaction();
+        ArrayList<Feedback> feedbacks = new ArrayList<>();
+        Feedback feedback = new Feedback();
 
-        for (int i = 0; i < 20; i++) {
-            transactions.add(transaction);
+        for (int i = 0; i < 10; i++) {
+            feedbacks.add(feedback);
         }
 
-        TransactionsAdapter adapter = new TransactionsAdapter(this, transactions);
+        FeedbacksAdapter adapter = new FeedbacksAdapter(this, feedbacks);
         recyclerView.setAdapter(adapter);
     }
 
