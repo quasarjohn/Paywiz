@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements LoginSignUpFragme
             getSupportFragmentManager().beginTransaction().
                     add(R.id.main_container, new LoginSignUpFragment()).commit();
         else {
-            Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+            Intent intent = new Intent(MainActivity.this, HomeActivity.class);
             startActivity(intent);
         }
 

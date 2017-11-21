@@ -18,29 +18,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="0dp"
-        android:paddingBottom="16dp"
-        >
-
-        <ImageView
-            android:id="@+id/transaction_img"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:background="@android:color/white"
-            android:scaleType="centerCrop"
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toTopOf="parent" />
+        android:paddingBottom="16dp">
 
         <TextView
             android:id="@+id/product_name_textview"
-            android:layout_width="0dp"
-            android:layout_height="22dp"
-            android:layout_marginEnd="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
             android:text="Asus Zenfone 3 Max"
             android:textSize="18sp"
             android:textStyle="bold"
-            card_view:layout_constraintBottom_toTopOf="@+id/product_quality_textview"
+
+            app:layout_constraintTop_toTopOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintHorizontal_bias="0.0"
             card_view:layout_constraintLeft_toLeftOf="parent"
@@ -49,17 +39,15 @@
 
         <TextView
             android:id="@+id/product_quality_textview"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:layout_marginEnd="8dp"
             android:layout_marginStart="16dp"
             android:text="Awaiting Acceptance"
             android:textColor="@color/custom_red"
             android:textSize="11sp"
             android:textStyle="bold"
-            card_view:layout_constraintBottom_toBottomOf="@+id/transaction_img"
-            card_view:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintTop_toBottomOf="@+id/product_name_textview"
             card_view:layout_constraintStart_toStartOf="parent" />
 
         <TextView
@@ -90,6 +78,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
+            android:layout_marginTop="8dp"
             android:paddingBottom="3dp"
             android:paddingEnd="8dp"
             android:paddingStart="8dp"
@@ -98,8 +87,8 @@
             android:textColor="@color/custom_red"
             android:textSize="20sp"
             android:textStyle="bold"
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/transaction_img" />
+            app:layout_constraintTop_toBottomOf="@+id/product_quality_textview"
+            card_view:layout_constraintEnd_toEndOf="parent" />
 
         <ImageView
             android:id="@+id/like"
@@ -125,7 +114,7 @@
             card_view:layout_constraintTop_toBottomOf="@+id/name_textview" />
 
         <ImageView
-            android:id="@+id/unlike"
+            android:id="@+id/dislike"
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:layout_marginStart="8dp"
@@ -135,7 +124,7 @@
             card_view:layout_constraintTop_toBottomOf="@+id/name_textview" />
 
         <TextView
-            android:id="@+id/unlike_value"
+            android:id="@+id/dislike_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
@@ -143,8 +132,8 @@
             android:text="2"
             android:textColor="@color/custom_red"
             android:textSize="11sp"
-            card_view:layout_constraintStart_toEndOf="@+id/unlike"
-            card_view:layout_constraintTop_toBottomOf="@+id/name_textview" />
+            app:layout_constraintStart_toEndOf="@+id/dislike"
+            app:layout_constraintTop_toBottomOf="@+id/name_textview" />
 
         <TextView
             android:id="@+id/courier_textview"
@@ -200,10 +189,10 @@
             android:id="@+id/transaction_date_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             android:text="November 13, 2017"
             android:textSize="11sp"
             android:textStyle="bold"
-            android:layout_marginBottom="16dp"
             card_view:layout_constraintEnd_toEndOf="@+id/transaction_date_textview"
             card_view:layout_constraintStart_toStartOf="@+id/transaction_date_textview"
             card_view:layout_constraintTop_toBottomOf="@+id/transaction_date_textview" />
@@ -225,12 +214,12 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="12dp"
             android:src="@drawable/ic_placeholder"
+            app:layout_constraintTop_toBottomOf="@+id/product_quality_textview"
             card_view:civ_border_color="#FF000000"
             card_view:civ_border_width="0dp"
-            card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/transaction_img" />
+            card_view:layout_constraintStart_toStartOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
 
