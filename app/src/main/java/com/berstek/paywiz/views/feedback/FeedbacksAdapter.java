@@ -39,8 +39,12 @@ public class FeedbacksAdapter extends RecyclerView.Adapter<FeedbacksAdapter.List
         //TODO
         if(holder.getAdapterPosition()==1)
             holder.name.setText("Reymark Arsenio");
-        else
+        else if(holder.getAdapterPosition()==2)
             holder.name.setText("Danmark Arqueza");
+        else if(holder.getAdapterPosition()==3)
+            holder.name.setText("Gilbert Cuaresma");
+        else
+            holder.name.setText("Mark Anthony Parcia");
     }
 
     @Override
