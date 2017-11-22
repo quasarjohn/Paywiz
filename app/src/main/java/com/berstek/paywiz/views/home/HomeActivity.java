@@ -1,5 +1,6 @@
 package com.berstek.paywiz.views.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.berstek.paywiz.R;
+import com.berstek.paywiz.views.user_profile.ProfileActivity;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
@@ -84,7 +86,8 @@ public class HomeActivity extends AppCompatActivity
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.search_btn) {
-            //TODO open search dialog fragment
+            Intent intent = new Intent(this, ProfileActivity.class);
+            startActivity(intent);
         }
     }
 }
