@@ -6,11 +6,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
 
-public class UserDA {
+public class UserDA extends DA {
 
-    private DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference().getRoot();
-
-    public Query getUser(String uid) {
+    public Query queryUserByUID(String uid) {
         return rootRef.child("users").orderByKey().equalTo(uid);
     }
 

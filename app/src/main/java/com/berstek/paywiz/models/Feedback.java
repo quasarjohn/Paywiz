@@ -5,6 +5,7 @@ package com.berstek.paywiz.models;
  */
 
 public class Feedback {
-    private String name,type,comment;
-    private int star;
+    private String transaction_uid, comment;
+    private int rating;
+    private int time_stamp;
 }
