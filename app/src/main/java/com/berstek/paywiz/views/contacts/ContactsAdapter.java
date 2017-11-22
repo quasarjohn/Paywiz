@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.berstek.paywiz.R;
 import com.berstek.paywiz.models.Contact;
@@ -27,7 +28,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ListHo
 
     @Override
     public ListHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.viewholder_placeholder, parent, false);
+        View view = inflater.inflate(R.layout.viewholder_contact, parent, false);
         return new ListHolder(view);
     }
 
@@ -42,9 +43,12 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ListHo
     }
 
     class ListHolder extends RecyclerView.ViewHolder {
-
+        private TextView name, rating;
         public ListHolder(View itemView) {
             super(itemView);
+            name = itemView.findViewById(R.id.name_textview);
+            rating = itemView.findViewById(R.id.rating_value);
+
         }
     }
 }
