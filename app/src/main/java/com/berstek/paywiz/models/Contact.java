@@ -1,5 +1,6 @@
 package com.berstek.paywiz.models;
 
+
 /**
  * Created by Jarvis on 23/11/2017.
  */
@@ -7,4 +8,5 @@ package com.berstek.paywiz.models;
 public class Contact {
     private String name;
     private Double rating;
+
 }

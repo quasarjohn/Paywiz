@@ -207,9 +207,8 @@ public class LoginSignUpFragment extends Fragment implements View.OnClickListene
                             final FirebaseUser firebaseUser = auth.getCurrentUser();
                             Log.wtf(null, firebaseUser.getPhotoUrl().toString());
 
-
                             //check if user exists, if false, add user info to database
-                            userDA.getUser(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                            userDA.queryUserByUID(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
                                     //means the user does not exist so create it
