@@ -30,8 +30,6 @@ public class MainActivity extends AppCompatActivity implements LoginSignUpFragme
             startActivity(intent);
         }
 
-
-        //Test
     }
 
     @Override

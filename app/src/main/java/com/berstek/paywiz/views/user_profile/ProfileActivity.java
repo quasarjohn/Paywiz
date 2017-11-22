@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.berstek.paywiz.R;
@@ -18,9 +19,9 @@ import com.berstek.paywiz.views.transactions.TransactionsAdapter;
 
 import java.util.ArrayList;
 
-public class ProfileActivity extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private ImageView dp, dpBlurred;
+    private ImageView dp, dpBlurred, backImg;
     private CustomImageUtils customImageUtils;
 
     private RecyclerView recyclerView;
@@ -40,6 +41,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         dp = findViewById(R.id.dp);
         dpBlurred = findViewById(R.id.dp_blurred);
+        backImg = findViewById(R.id.back_img);
 
         BitmapDrawable img = (BitmapDrawable) dpBlurred.getDrawable();
         Bitmap bitmap = img.getBitmap();
@@ -50,6 +52,8 @@ public class ProfileActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recview_feedbacks);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 //
+        backImg.setOnClickListener(this);
+
         loadFeedbacks();
     }
 
@@ -67,4 +71,8 @@ public class ProfileActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
+    @Override
+    public void onClick(View view) {
+        super.onBackPressed();
+    }
 }
