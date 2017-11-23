@@ -54,6 +54,13 @@ public class HomeActivity extends AppCompatActivity
 
         searchBtn = findViewById(R.id.search_btn);
         appTitle = findViewById(R.id.app_title);
+        dpBlurred = navigationView.getHeaderView(0).findViewById(R.id.dp_blurred);
+
+        BitmapDrawable img = (BitmapDrawable) dpBlurred.getDrawable();
+        Bitmap bitmap = img.getBitmap();
+        Bitmap blurred = new CustomImageUtils().blurRenderScript(bitmap,
+                15, HomeActivity.this);
+        dpBlurred.setImageBitmap(blurred);
 
         searchBtn.setOnClickListener(this);
 
@@ -88,7 +95,9 @@ public class HomeActivity extends AppCompatActivity
 
         } 
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        //DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
