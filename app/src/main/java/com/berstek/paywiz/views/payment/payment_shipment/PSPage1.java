@@ -14,7 +14,6 @@ import com.berstek.paywiz.R;
  */
 public class PSPage1 extends Fragment {
 
-
     public PSPage1() {
         // Required empty public constructor
     }

@@ -13,7 +13,7 @@ import android.widget.ImageView;
 
 import com.berstek.paywiz.R;
 import com.berstek.paywiz.models.Transaction;
-import com.berstek.paywiz.views.payment.PaymentActivity;
+import com.berstek.paywiz.views.payment.payment_shipment.PaymentShipmentActivity;
 
 import java.util.ArrayList;
 
@@ -74,7 +74,7 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
         int id = view.getId();
 
         if (id == R.id.send) {
-            Intent intent = new Intent(getContext(), PaymentActivity.class);
+            Intent intent = new Intent(getContext(), PaymentShipmentActivity.class);
             startActivity(intent);
         } else if (id == R.id.receive) {
 
