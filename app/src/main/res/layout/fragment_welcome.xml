@@ -50,7 +50,6 @@
         android:backgroundTint="@color/colorAccent"
         android:foreground="@drawable/ripple22dp"
         android:text="CONTINUE"
-        android:textColor="@android:color/white"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
