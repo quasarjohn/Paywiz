@@ -33,7 +33,7 @@
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
                     android:src="@drawable/emma"
-                    android:tint="#6F000000" />
+                    android:tint="@color/custom_blur_tint" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/dp"
@@ -68,7 +68,7 @@
                     app:srcCompat="@drawable/ic_arrow_back_white_24dp" />
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/name_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Emma Watson"
@@ -80,20 +80,20 @@
                     app:layout_constraintTop_toBottomOf="@+id/dp" />
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/address_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/ic_location"
                     android:gravity="bottom"
                     android:text="  Quezon City, Philippines"
                     android:textColor="@android:color/white"
-                    app:layout_constraintEnd_toEndOf="@+id/textView3"
+                    app:layout_constraintEnd_toEndOf="@+id/name_txt"
                     app:layout_constraintHorizontal_bias="0.529"
-                    app:layout_constraintStart_toStartOf="@+id/textView3"
-                    app:layout_constraintTop_toBottomOf="@+id/textView3" />
+                    app:layout_constraintStart_toStartOf="@+id/name_txt"
+                    app:layout_constraintTop_toBottomOf="@+id/name_txt" />
 
                 <TextView
-                    android:id="@+id/textView9"
+                    android:id="@+id/phone_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
@@ -101,12 +101,12 @@
                     android:drawableLeft="@drawable/ic_phone"
                     android:text="  +639212849365"
                     android:textColor="@android:color/white"
-                    app:layout_constraintEnd_toEndOf="@+id/textView5"
-                    app:layout_constraintStart_toStartOf="@+id/textView5"
-                    app:layout_constraintTop_toBottomOf="@+id/textView5" />
+                    app:layout_constraintEnd_toEndOf="@+id/address_txt"
+                    app:layout_constraintStart_toStartOf="@+id/address_txt"
+                    app:layout_constraintTop_toBottomOf="@+id/address_txt" />
 
                 <TextView
-                    android:id="@+id/textView10"
+                    android:id="@+id/rating_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
@@ -114,9 +114,9 @@
                     android:drawableLeft="@drawable/ic_rating"
                     android:text="  4.0"
                     android:textColor="@android:color/white"
-                    app:layout_constraintEnd_toEndOf="@+id/textView9"
-                    app:layout_constraintStart_toStartOf="@+id/textView9"
-                    app:layout_constraintTop_toBottomOf="@+id/textView9" />
+                    app:layout_constraintEnd_toEndOf="@+id/phone_txt"
+                    app:layout_constraintStart_toStartOf="@+id/phone_txt"
+                    app:layout_constraintTop_toBottomOf="@+id/phone_txt" />
 
                 <ImageView
                     android:id="@+id/imageView3"
@@ -131,7 +131,7 @@
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintHorizontal_chainStyle="packed"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView10"
+                    app:layout_constraintTop_toBottomOf="@+id/rating_txt"
                     app:layout_constraintVertical_bias="1.0"
                     app:srcCompat="@drawable/ic_chat" />
 
@@ -147,7 +147,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/imageView3"
-                    app:layout_constraintTop_toBottomOf="@+id/textView10"
+                    app:layout_constraintTop_toBottomOf="@+id/rating_txt"
                     app:layout_constraintVertical_bias="1.0"
                     app:srcCompat="@drawable/ic_pay_user" />
 

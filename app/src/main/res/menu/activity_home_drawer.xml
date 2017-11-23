@@ -6,23 +6,23 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_limits"
-            android:icon="@android:drawable/checkbox_on_background"
+            android:icon="@drawable/ic_verification"
             android:title="Limits and Verification" />
         <item
             android:id="@+id/nav_earn"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_rewards"
             android:title="Earn Rewards" />
         <item
             android:id="@+id/nav_settings"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_settings"
             android:title="Settings" />
         <item
             android:id="@+id/nav_message"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_message"
             android:title="Send us a message" />
         <item
             android:id="@+id/nav_logout"
-            android:icon="?android:attr/homeAsUpIndicator"
+            android:icon="@drawable/ic_logout"
             android:title="Log Out" />
     </group>
 

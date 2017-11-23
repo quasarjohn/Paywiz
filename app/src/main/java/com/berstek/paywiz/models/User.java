@@ -1,5 +1,7 @@
 package com.berstek.paywiz.models;
 
+import com.google.firebase.database.Exclude;
+
 public class User {
 
     private String lastname, firstname, middlename;
@@ -71,5 +73,10 @@ public class User {
 
     public void setPay_id(String pay_id) {
         this.pay_id = pay_id;
+    }
+
+    @Exclude
+    public String getFullName() {
+        return firstname + " " + lastname;
     }
 }
