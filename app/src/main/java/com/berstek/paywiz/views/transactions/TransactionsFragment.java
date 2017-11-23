@@ -1,6 +1,7 @@
 package com.berstek.paywiz.views.transactions;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,6 +13,7 @@ import android.widget.ImageView;
 
 import com.berstek.paywiz.R;
 import com.berstek.paywiz.models.Transaction;
+import com.berstek.paywiz.views.payment.PaymentActivity;
 
 import java.util.ArrayList;
 
@@ -72,7 +74,8 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
         int id = view.getId();
 
         if (id == R.id.send) {
-
+            Intent intent = new Intent(getContext(), PaymentActivity.class);
+            startActivity(intent);
         } else if (id == R.id.receive) {
 
         } else if (id == R.id.cashin) {
