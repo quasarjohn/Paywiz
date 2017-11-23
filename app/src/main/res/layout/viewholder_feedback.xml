@@ -7,6 +7,7 @@
     android:layout_gravity="center"
     android:background="@android:color/white"
     android:layout_marginBottom="8dp"
+    android:clickable="true"
     app:cardUseCompatPadding="false"
     card_view:cardCornerRadius="0dp"
     card_view:cardElevation="0dp"
@@ -16,7 +17,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="0dp"
-        android:paddingBottom="16dp" >
+        android:paddingBottom="16dp"
+        android:background="?android:attr/selectableItemBackground">
 
         <TextView
             android:id="@+id/description_textview"

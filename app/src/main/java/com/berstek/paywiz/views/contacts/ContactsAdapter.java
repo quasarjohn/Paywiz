@@ -1,15 +1,18 @@
 package com.berstek.paywiz.views.contacts;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.berstek.paywiz.R;
 import com.berstek.paywiz.models.Contact;
 import com.berstek.paywiz.models.User;
+import com.berstek.paywiz.views.user_profile.ProfileActivity;
 
 import java.util.ArrayList;
 
@@ -42,13 +45,34 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ListHo
         return contacts.size();
     }
 
-    class ListHolder extends RecyclerView.ViewHolder {
+    class ListHolder extends RecyclerView.ViewHolder{
         private TextView name, rating;
+        private ImageView dp;
+        private View itemView;
         public ListHolder(View itemView) {
             super(itemView);
+            this.itemView = itemView;
+            dp = itemView.findViewById(R.id.profile_image);
+            dp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    setProfileActivity();
+                }
+            });
             name = itemView.findViewById(R.id.name_textview);
+            name.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    setProfileActivity();
+                }
+            });
             rating = itemView.findViewById(R.id.rating_value);
 
+        }
+
+        public void setProfileActivity(){
+            Intent intent = new Intent(context, ProfileActivity.class);
+            context.startActivity(intent);
         }
     }
 }
