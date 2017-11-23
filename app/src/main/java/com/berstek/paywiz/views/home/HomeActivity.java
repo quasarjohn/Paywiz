@@ -1,6 +1,8 @@
 package com.berstek.paywiz.views.home;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -14,12 +16,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.berstek.paywiz.R;
+import com.berstek.paywiz.utils.CustomImageUtils;
 import com.berstek.paywiz.views.user_profile.ProfileActivity;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
-    private ImageView searchBtn;
+    private ImageView searchBtn,dpBlurred;
+    private CustomImageUtils customImageUtils;
     private TextView appTitle;
 
     @Override
@@ -38,7 +42,15 @@ public class HomeActivity extends AppCompatActivity
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        dpBlurred = navigationView.findViewById(R.id.dp_blurred);
+
         //Wire views
+        /*dpBlurred = findViewById(R.id.dp_blurred);
+        BitmapDrawable img = (BitmapDrawable) dpBlurred.getDrawable();
+        Bitmap bitmap = img.getBitmap();
+        Bitmap blurred = customImageUtils.blurRenderScript(bitmap,
+                15, HomeActivity.this);
+        dpBlurred.setImageBitmap(blurred);*/
 
         searchBtn = findViewById(R.id.search_btn);
         appTitle = findViewById(R.id.app_title);
@@ -64,19 +76,17 @@ public class HomeActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        /*if (id == R.id.nav_camera) {
+        if (id == R.id.nav_limits) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_earn) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_settings) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_message) {
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_logout) {
 
-        } else if (id == R.id.nav_send) {
-
-        }*/
+        } 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
