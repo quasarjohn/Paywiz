@@ -4,6 +4,9 @@ import com.google.firebase.database.Exclude;
 
 public class User {
 
+    @Exclude
+    private String key;
+
     private String lastname, firstname, middlename;
     private String bio;
     private String email;
@@ -78,5 +81,15 @@ public class User {
     @Exclude
     public String getFullName() {
         return firstname + " " + lastname;
+    }
+
+    @Exclude
+    public String getKey() {
+        return key;
+    }
+
+    @Exclude
+    public void setKey(String key) {
+        this.key = key;
     }
 }

@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -66,7 +67,18 @@ public class SearchUserDialogFragment extends DialogFragment
         searchEdit.addTextChangedListener(this);
         backImg.setOnClickListener(this);
 
-        afterTextChanged(null);
+        ArrayList<Contact> contacts = new ArrayList<>();
+
+        for (int i = 0; i < 20; i++) {
+            Contact contact = new Contact();
+            contact.setKey("contact key");
+            contacts.add(contact);
+        }
+
+        SearchContactsAdapter searchContactsAdapter = new SearchContactsAdapter(getContext(), contacts);
+        searchContactsAdapter.setContactSelectedListener(this);
+        recviewContacts.setAdapter(searchContactsAdapter);
+
         return view;
     }
 
@@ -77,26 +89,41 @@ public class SearchUserDialogFragment extends DialogFragment
 
     @Override
     public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+        handler.removeCallbacks(inputListener);
     }
 
     @Override
     public void afterTextChanged(Editable editable) {
-        //TODO Load data
-        ArrayList<Contact> contacts = new ArrayList<>();
-        ArrayList<User> users = new ArrayList<>();
-
-        for (int i = 0; i < 20; i++) {
-            contacts.add(new Contact());
-            users.add(new User());
-        }
-
-        SearchContactsAdapter searchContactsAdapter = new SearchContactsAdapter(getContext(), contacts);
-        recviewContacts.setAdapter(searchContactsAdapter);
-
-        SearchResultsAdapter searchResultsAdapter = new SearchResultsAdapter(getContext(), users);
-        recviewResults.setAdapter(searchResultsAdapter);
+        handler.postDelayed(inputListener, delay);
     }
+
+    private long delay = 1000, lastEdited = 0;
+    private Handler handler = new Handler();
+
+    private Runnable inputListener = new Runnable() {
+        @Override
+        public void run() {
+            if (System.currentTimeMillis() > (lastEdited + delay - 500)) {
+                //TODO Load data
+                ArrayList<User> users = new ArrayList<>();
+
+                for (int i = 0; i < 20; i++) {
+                    User user = new User();
+                    user.setKey("test key");
+                    users.add(user);
+                }
+
+                SearchResultsAdapter searchResultsAdapter = new SearchResultsAdapter(getContext(), users);
+                searchResultsAdapter.setResultSelectedListener(new OnResultSelectedListener() {
+                    @Override
+                    public void onResultSelected(User user) {
+                        resultSelectedListener.onResultSelected(user);
+                    }
+                });
+                recviewResults.setAdapter(searchResultsAdapter);
+            }
+        }
+    };
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -124,7 +151,6 @@ public class SearchUserDialogFragment extends DialogFragment
 
     @Override
     public void onResultSelected(User user) {
-        resultSelectedListener.onResultSelected(user);
     }
 
     public void setResultSelectedListener(OnResultSelectedListener resultSelectedListener) {

@@ -21,9 +21,12 @@ import android.widget.TextView;
 import com.berstek.paywiz.MainActivity;
 import com.berstek.paywiz.R;
 import com.berstek.paywiz.data_access.UserDA;
+import com.berstek.paywiz.models.Contact;
 import com.berstek.paywiz.models.User;
 import com.berstek.paywiz.utils.CustomImageUtils;
 import com.berstek.paywiz.utils.UserUtils;
+import com.berstek.paywiz.views.search.SearchContactsAdapter;
+import com.berstek.paywiz.views.search.SearchResultsAdapter;
 import com.berstek.paywiz.views.search.SearchUserDialogFragment;
 import com.berstek.paywiz.views.user_profile.ProfileActivity;
 import com.bumptech.glide.Glide;
@@ -36,7 +39,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.concurrent.ExecutionException;
 
 public class HomeActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener,
+        SearchContactsAdapter.OnContactSelectedListener,
+        SearchResultsAdapter.OnResultSelectedListener {
 
     private ImageView searchBtn;
     private TextView appTitle, nameTxt, addressTxt, phoneTxt,
@@ -173,11 +178,22 @@ public class HomeActivity extends AppCompatActivity
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.search_btn) {
-//            Intent intent = new Intent(this, ProfileActivity.class);
-//            startActivity(intent);
-
             SearchUserDialogFragment fragment = new SearchUserDialogFragment();
+            fragment.setContactSelectedListener(this);
+            fragment.setResultSelectedListener(this);
             fragment.show(getSupportFragmentManager(), null);
         }
+    }
+
+    @Override
+    public void onContactSelected(Contact contact) {
+        Intent intent = new Intent(this, ProfileActivity.class);
+        intent.putExtra("key", contact.getKey());
+    }
+
+    @Override
+    public void onResultSelected(User user) {
+        Intent intent = new Intent(this, ProfileActivity.class);
+        intent.putExtra("key", user.getKey());
     }
 }
