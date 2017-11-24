@@ -41,8 +41,8 @@ public class SearchUserDialogFragment extends DialogFragment
     private OnResultSelectedListener resultSelectedListener;
     private OnContactSelectedListener contactSelectedListener;
 
-//    private ImageView backImg;
-//    private EditText searchEdit;
+    private ImageView backImg;
+    private EditText searchEdit;
     private RecyclerView recviewContacts, recviewResults;
 
 
@@ -53,8 +53,8 @@ public class SearchUserDialogFragment extends DialogFragment
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_search_user, container, false);
-//        backImg = view.findViewById(R.id.back_img);
-//        searchEdit = view.findViewById(R.id.search_edit);
+        backImg = view.findViewById(R.id.back_img);
+        searchEdit = view.findViewById(R.id.search_edit);
         recviewContacts = view.findViewById(R.id.recview_contacts);
         recviewResults = view.findViewById(R.id.recview_results);
 
@@ -63,8 +63,8 @@ public class SearchUserDialogFragment extends DialogFragment
         recviewContacts.setLayoutManager(linearLayoutManager);
         recviewResults.setLayoutManager(new LinearLayoutManager(getContext()));
 
-//        searchEdit.addTextChangedListener(this);
-//        backImg.setOnClickListener(this);
+        searchEdit.addTextChangedListener(this);
+        backImg.setOnClickListener(this);
 
         afterTextChanged(null);
         return view;
@@ -91,8 +91,8 @@ public class SearchUserDialogFragment extends DialogFragment
             users.add(new User());
         }
 
-//        SearchContactsAdapter searchContactsAdapter = new SearchContactsAdapter(getContext(), contacts);
-//        recviewContacts.setAdapter(searchContactsAdapter);
+        SearchContactsAdapter searchContactsAdapter = new SearchContactsAdapter(getContext(), contacts);
+        recviewContacts.setAdapter(searchContactsAdapter);
 
         SearchResultsAdapter searchResultsAdapter = new SearchResultsAdapter(getContext(), users);
         recviewResults.setAdapter(searchResultsAdapter);
