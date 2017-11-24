@@ -24,6 +24,7 @@ import com.berstek.paywiz.data_access.UserDA;
 import com.berstek.paywiz.models.User;
 import com.berstek.paywiz.utils.CustomImageUtils;
 import com.berstek.paywiz.utils.UserUtils;
+import com.berstek.paywiz.views.search.SearchUserDialogFragment;
 import com.berstek.paywiz.views.user_profile.ProfileActivity;
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
@@ -172,8 +173,11 @@ public class HomeActivity extends AppCompatActivity
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.search_btn) {
-            Intent intent = new Intent(this, ProfileActivity.class);
-            startActivity(intent);
+//            Intent intent = new Intent(this, ProfileActivity.class);
+//            startActivity(intent);
+
+            SearchUserDialogFragment fragment = new SearchUserDialogFragment();
+            fragment.show(getSupportFragmentManager(), null);
         }
     }
 }
