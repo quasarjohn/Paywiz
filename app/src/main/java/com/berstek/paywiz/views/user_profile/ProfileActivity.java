@@ -4,11 +4,13 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.graphics.Palette;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.berstek.paywiz.R;
 import com.berstek.paywiz.data_access.DA;
@@ -18,6 +20,7 @@ import com.berstek.paywiz.models.Transaction;
 import com.berstek.paywiz.models.User;
 import com.berstek.paywiz.utils.CustomImageUtils;
 import com.berstek.paywiz.views.feedback.FeedbacksAdapter;
+import com.berstek.paywiz.views.home.HomeActivity;
 import com.berstek.paywiz.views.transactions.TransactionsAdapter;
 import com.bumptech.glide.Glide;
 import com.google.firebase.database.DataSnapshot;
@@ -29,6 +32,8 @@ import java.util.ArrayList;
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ImageView dp, dpBlurred, backImg;
+    private TextView nameTxt;
+
     private CustomImageUtils customImageUtils;
 
     private UserDA userDA;
@@ -56,6 +61,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         dp = findViewById(R.id.dp);
         dpBlurred = findViewById(R.id.dp_blurred);
         backImg = findViewById(R.id.back_img);
+        nameTxt = findViewById(R.id.name_txt);
 
         BitmapDrawable img = (BitmapDrawable) dpBlurred.getDrawable();
         Bitmap bitmap = img.getBitmap();
@@ -65,7 +71,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         recyclerView = findViewById(R.id.recview_feedbacks);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-//
+
         backImg.setOnClickListener(this);
 
         loadUserData();
@@ -78,9 +84,13 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
                     User user = child.getValue(User.class);
+                    nameTxt.setText(user.getFullName());
                     Glide.with(ProfileActivity.this).
                             load(user.getPhoto_url()).
                             skipMemoryCache(true).into(dp);
+
+                    new CustomImageUtils().blurImage(ProfileActivity.this, user.getPhoto_url(),
+                            dpBlurred, true);
                 }
             }
 

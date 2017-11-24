@@ -1,16 +1,22 @@
 package com.berstek.paywiz.utils;
 
-import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.renderscript.Allocation;
 import android.renderscript.Element;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
+import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
+
+import java.util.concurrent.ExecutionException;
 
 public class CustomImageUtils {
 
-    @SuppressLint("NewApi")
     public Bitmap blurRenderScript(Bitmap smallBitmap, int radius, Context context) {
 
         try {
@@ -55,5 +61,75 @@ public class CustomImageUtils {
         //Set RGB pixels.
         result.setPixels(pixels, 0, result.getWidth(), 0, 0, result.getWidth(), result.getHeight());
         return result;
+    }
+
+    public void blurImage(final Activity context, final String url, final ImageView imageView, final boolean updateStatusBarColor) {
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    final Bitmap myBitmap = Glide.with(context)
+                            .load(url)
+                            .asBitmap()
+                            .into(500, 500)
+                            .get();
+
+                    context.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            imageView.setImageBitmap(myBitmap);
+
+                            BitmapDrawable img = (BitmapDrawable) imageView.getDrawable();
+                            Bitmap bitmap = img.getBitmap();
+                            Bitmap blurred = new CustomImageUtils().blurRenderScript(bitmap,
+                                    15, context);
+                            imageView.setImageBitmap(blurred);
+
+                            imageView.setColorFilter(Color.rgb(123, 123, 123),
+                                    android.graphics.PorterDuff.Mode.MULTIPLY);
+
+                            if (updateStatusBarColor) {
+                                BitmapDrawable drawable = (BitmapDrawable) imageView.getDrawable();
+
+                                Bitmap newBitmap = Bitmap.createScaledBitmap(drawable.getBitmap(), 1, 1, true);
+                                final int color = newBitmap.getPixel(0, 0);
+                                newBitmap.recycle();
+
+                                context.getWindow().setStatusBarColor(color);
+                            }
+                        }
+                    });
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        t.start();
+    }
+
+    public static int getBitmapAverageColor(Bitmap bitmap) {
+        int redColors = 0;
+        int greenColors = 0;
+        int blueColors = 0;
+        int pixelCount = 0;
+
+        for (int y = 0; y < bitmap.getHeight(); y++) {
+            for (int x = 0; x < bitmap.getWidth(); x++) {
+                int c = bitmap.getPixel(x, y);
+                pixelCount++;
+                redColors += Color.red(c);
+                greenColors += Color.green(c);
+                blueColors += Color.blue(c);
+            }
+        }
+        // calculate average of bitmap r,g,b values
+        int red = (redColors / pixelCount);
+        int green = (greenColors / pixelCount);
+        int blue = (blueColors / pixelCount);
+
+        return Color.argb(1, red, green, blue);
     }
 }

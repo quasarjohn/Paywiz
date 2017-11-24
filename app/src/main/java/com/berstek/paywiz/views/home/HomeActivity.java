@@ -103,41 +103,8 @@ public class HomeActivity extends AppCompatActivity
 
                     Glide.with(HomeActivity.this).
                             load(user.getPhoto_url()).skipMemoryCache(true).into(dp);
-                    Thread t = new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                final Bitmap myBitmap = Glide.with(HomeActivity.this)
-                                        .load(user.getPhoto_url())
-                                        .asBitmap()
-                                        .into(500, 500)
-                                        .get();
 
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        dpBlurred.setImageBitmap(myBitmap);
-
-                                        BitmapDrawable img = (BitmapDrawable) dpBlurred.getDrawable();
-                                        Bitmap bitmap = img.getBitmap();
-                                        Bitmap blurred = new CustomImageUtils().blurRenderScript(bitmap,
-                                                15, HomeActivity.this);
-                                        dpBlurred.setImageBitmap(blurred);
-
-                                        dpBlurred.setColorFilter(Color.rgb(123, 123, 123),
-                                                android.graphics.PorterDuff.Mode.MULTIPLY);
-                                    }
-                                });
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            } catch (ExecutionException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    });
-
-                    t.start();
-
+                    new CustomImageUtils().blurImage(HomeActivity.this, user.getPhoto_url(), dpBlurred, false);
                 }
             }
 
