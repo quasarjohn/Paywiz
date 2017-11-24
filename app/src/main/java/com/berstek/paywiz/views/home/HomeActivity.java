@@ -189,11 +189,13 @@ public class HomeActivity extends AppCompatActivity
     public void onContactSelected(Contact contact) {
         Intent intent = new Intent(this, ProfileActivity.class);
         intent.putExtra("key", contact.getKey());
+        startActivity(intent);
     }
 
     @Override
     public void onResultSelected(User user) {
         Intent intent = new Intent(this, ProfileActivity.class);
-        intent.putExtra("key", user.getKey());
+        intent.putExtra("key", user.getPay_id());
+        startActivity(intent);
     }
 }

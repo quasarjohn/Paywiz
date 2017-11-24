@@ -12,6 +12,11 @@ public class UserDA extends DA {
         return rootRef.child("users").orderByKey().equalTo(uid);
     }
 
+    public Query queryUserByPayID(String payID) {
+        return rootRef.child("users").orderByChild("pay_id").equalTo(payID);
+    }
+
+
     public void addUser(String uid, User user) {
         rootRef.child("users").child(uid).setValue(user);
     }

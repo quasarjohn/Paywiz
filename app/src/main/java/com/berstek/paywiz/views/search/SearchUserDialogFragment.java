@@ -12,7 +12,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,10 +20,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.berstek.paywiz.R;
+import com.berstek.paywiz.data_access.UserDA;
 import com.berstek.paywiz.models.Contact;
 import com.berstek.paywiz.models.User;
 import com.berstek.paywiz.views.search.SearchResultsAdapter.OnResultSelectedListener;
 import com.berstek.paywiz.views.search.SearchContactsAdapter.OnContactSelectedListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -38,6 +41,8 @@ public class SearchUserDialogFragment extends DialogFragment
     public SearchUserDialogFragment() {
         // Required empty public constructor
     }
+
+    private UserDA userDA;
 
     private OnResultSelectedListener resultSelectedListener;
     private OnContactSelectedListener contactSelectedListener;
@@ -58,6 +63,8 @@ public class SearchUserDialogFragment extends DialogFragment
         searchEdit = view.findViewById(R.id.search_edit);
         recviewContacts = view.findViewById(R.id.recview_contacts);
         recviewResults = view.findViewById(R.id.recview_results);
+
+        userDA = new UserDA();
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -104,23 +111,29 @@ public class SearchUserDialogFragment extends DialogFragment
         @Override
         public void run() {
             if (System.currentTimeMillis() > (lastEdited + delay - 500)) {
-                //TODO Load data
-                ArrayList<User> users = new ArrayList<>();
+                final ArrayList<User> users = new ArrayList<>();
 
-                for (int i = 0; i < 20; i++) {
-                    User user = new User();
-                    user.setKey("test key");
-                    users.add(user);
-                }
-
-                SearchResultsAdapter searchResultsAdapter = new SearchResultsAdapter(getContext(), users);
-                searchResultsAdapter.setResultSelectedListener(new OnResultSelectedListener() {
+                userDA.queryUserByPayID(searchEdit.getText().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
-                    public void onResultSelected(User user) {
-                        resultSelectedListener.onResultSelected(user);
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for (DataSnapshot child : dataSnapshot.getChildren()) {
+                            User user = child.getValue(User.class);
+                            user.setKey(child.getKey());
+                            users.add(user);
+
+                            SearchResultsAdapter searchResultsAdapter = new SearchResultsAdapter(getContext(), users);
+                            searchResultsAdapter.setResultSelectedListener(SearchUserDialogFragment.this);
+                            recviewResults.setAdapter(searchResultsAdapter);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
                     }
                 });
-                recviewResults.setAdapter(searchResultsAdapter);
+
+
             }
         }
     };
@@ -151,6 +164,7 @@ public class SearchUserDialogFragment extends DialogFragment
 
     @Override
     public void onResultSelected(User user) {
+        resultSelectedListener.onResultSelected(user);
     }
 
     public void setResultSelectedListener(OnResultSelectedListener resultSelectedListener) {

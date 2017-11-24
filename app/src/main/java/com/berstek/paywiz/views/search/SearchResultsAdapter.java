@@ -5,9 +5,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.berstek.paywiz.R;
 import com.berstek.paywiz.models.User;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
@@ -31,7 +34,9 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdap
 
     @Override
     public void onBindViewHolder(ListHolder holder, int position) {
-
+        User user = users.get(position);
+        Glide.with(context).load(user.getPhoto_url()).skipMemoryCache(true).into(holder.dp);
+        holder.title.setText(user.getFullName());
     }
 
     @Override
@@ -41,8 +46,15 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdap
 
     public class ListHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+        private ImageView dp;
+        private TextView title, subtitle;
+
         public ListHolder(View itemView) {
             super(itemView);
+            title = itemView.findViewById(R.id.title);
+            subtitle = itemView.findViewById(R.id.subtitle);
+            dp = itemView.findViewById(R.id.dp);
+
             itemView.setOnClickListener(this);
         }
 
