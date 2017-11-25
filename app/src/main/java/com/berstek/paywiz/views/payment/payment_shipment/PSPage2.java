@@ -1,6 +1,7 @@
 package com.berstek.paywiz.views.payment.payment_shipment;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -16,11 +17,17 @@ import java.util.ArrayList;
  */
 public class PSPage2 extends Fragment {
 
+    private DetailsAndImageURLListener listener;
 
     public PSPage2() {
         // Required empty public constructor
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        listener = (DetailsAndImageURLListener) context;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
