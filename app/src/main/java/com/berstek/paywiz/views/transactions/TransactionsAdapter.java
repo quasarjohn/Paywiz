@@ -51,8 +51,8 @@ public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsAdapte
 
     class ListHolder extends RecyclerView.ViewHolder {
         private ImageView dp;
-        private TextView product_name,product_quality,name,identity,likes,dislikes,price,courier,transaction_date,
-        date_shipped;
+        private TextView product_name,product_quality,name,identity,price,courier,transaction_date,
+        date_shipped,transaction_code,rating;
         private View.OnClickListener clickListener;
         public ListHolder(View itemView) {
             super(itemView);
@@ -61,7 +61,8 @@ public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsAdapte
             product_quality  = itemView.findViewById(R.id.product_quality_textview);
             name  = itemView.findViewById(R.id.name_textview);
             identity = itemView.findViewById(R.id.identity_textview);
-
+            transaction_code = itemView.findViewById(R.id.transaction_code);
+            rating = itemView.findViewById(R.id.rating_textview);
             price  = itemView.findViewById(R.id.price_textview);
             courier  = itemView.findViewById(R.id.courier_value);
             transaction_date  = itemView.findViewById(R.id.transaction_date_value);
