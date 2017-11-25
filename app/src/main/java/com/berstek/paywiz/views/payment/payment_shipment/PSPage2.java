@@ -17,7 +17,6 @@ import java.util.ArrayList;
  */
 public class PSPage2 extends Fragment {
 
-    private DetailsAndImageURLListener listener;
 
     public PSPage2() {
         // Required empty public constructor
@@ -26,7 +25,6 @@ public class PSPage2 extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        listener = (DetailsAndImageURLListener) context;
     }
 
     @Override
@@ -35,9 +33,5 @@ public class PSPage2 extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_pspage2, container, false);
     }
-
-    interface DetailsAndImageURLListener {
-        void onDetailsAndImagesReady(String details, ArrayList<String> imgURLs);
-    }
-
+    
 }

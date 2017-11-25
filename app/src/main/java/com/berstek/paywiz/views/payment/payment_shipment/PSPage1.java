@@ -36,7 +36,7 @@ public class PSPage1 extends Fragment {
     }
 
     interface TitleAndAmountInputListener {
-        void onTitleAndAmountReady(String title, String amount);
+        void onTitleAndAmountReady(String title, String details, String amount);
     }
 
 }

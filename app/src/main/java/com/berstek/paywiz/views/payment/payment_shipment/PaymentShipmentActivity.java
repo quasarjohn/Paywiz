@@ -18,7 +18,6 @@ import java.util.ArrayList;
 
 public class PaymentShipmentActivity extends AppCompatActivity
         implements PSPage1.TitleAndAmountInputListener,
-        PSPage2.DetailsAndImageURLListener,
         PSPage3.CourierAndDueDateListener, ConfirmationDialogListener,
         SearchContactsAdapter.OnContactSelectedListener,
         SearchResultsAdapter.OnResultSelectedListener {
@@ -26,10 +25,9 @@ public class PaymentShipmentActivity extends AppCompatActivity
     /*
     PAYMENT FLOW
     1. Select recipient
-    2. Title and amount (PSPage1)
-    3. Details and pictures & ad url(recommended) (PSPage2)
-    4. Courier and due date (PSPage3)
-    5. Confirmation Dialog
+    2. Title, details and amount (PSPage1)
+    3. Courier and due date (PSPage2)
+    4. Confirmation Dialog
      */
 
     private Transaction transaction;
@@ -65,14 +63,15 @@ public class PaymentShipmentActivity extends AppCompatActivity
     }
 
     @Override
-    public void onTitleAndAmountReady(String title, String amount) {
-
+    public void onTitleAndAmountReady(String title, String details, String amount) {
+        transaction.setTitle(title);
+        transaction.setDetail(details);
+        transaction.setAmount(Double.parseDouble(amount));
+        PSPage2 page2 = new PSPage2();
+        getSupportFragmentManager().beginTransaction().replace(R.id.activity_payment, page2).
+                addToBackStack(null).commit();
     }
 
-    @Override
-    public void onDetailsAndImagesReady(String details, ArrayList<String> imgURLs) {
-
-    }
 
     @Override
     public void onCourierAndDueDateReady(Transaction.Courier courier, long due_date) {
