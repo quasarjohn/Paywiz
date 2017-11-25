@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 
 import com.berstek.paywiz.R;
 
+import java.util.ArrayList;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -25,6 +27,10 @@ public class PSPage2 extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_pspage2, container, false);
+    }
+
+    interface DetailsAndImageURLListener {
+        void onDetailsAndImagesReady(String details, ArrayList<String> imgURLs);
     }
 
 }

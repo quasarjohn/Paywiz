@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.berstek.paywiz.R;
+import com.berstek.paywiz.models.Transaction;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,4 +30,7 @@ public class PSPage3 extends Fragment {
         return textView;
     }
 
+    interface CourierAndDueDateListener {
+        void onCourierAndDueDateReady(Transaction.Courier courier, long due_date);
+    }
 }
