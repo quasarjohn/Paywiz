@@ -61,8 +61,7 @@ public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsAdapte
             product_quality  = itemView.findViewById(R.id.product_quality_textview);
             name  = itemView.findViewById(R.id.name_textview);
             identity = itemView.findViewById(R.id.identity_textview);
-            likes  = itemView.findViewById(R.id.like_value);
-            dislikes  = itemView.findViewById(R.id.dislike_value);
+
             price  = itemView.findViewById(R.id.price_textview);
             courier  = itemView.findViewById(R.id.courier_value);
             transaction_date  = itemView.findViewById(R.id.transaction_date_value);
