@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import com.berstek.paywiz.R;
 import com.berstek.paywiz.views.contacts.ContactsFragment;
 import com.berstek.paywiz.views.history.HistoryFragment;
+import com.berstek.paywiz.views.payment.payment_shipment.PSPage2;
 import com.berstek.paywiz.views.transactions.TransactionsFragment;
 
 import java.util.ArrayList;
