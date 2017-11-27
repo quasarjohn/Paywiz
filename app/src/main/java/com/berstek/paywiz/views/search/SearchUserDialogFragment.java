@@ -109,7 +109,8 @@ public class SearchUserDialogFragment extends DialogFragment
             if (System.currentTimeMillis() > (lastEdited + delay - 500)) {
                 final ArrayList<User> users = new ArrayList<>();
 
-                userDA.queryUserByPayID(searchEdit.getText().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
+                userDA.queryUserByPayID(searchEdit.getText().toString()).
+                        addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         for (DataSnapshot child : dataSnapshot.getChildren()) {

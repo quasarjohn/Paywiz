@@ -7,20 +7,31 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.berstek.paywiz.R;
+import com.berstek.paywiz.data_access.ContactDA;
+import com.berstek.paywiz.data_access.UserDA;
 import com.berstek.paywiz.models.Contact;
+import com.berstek.paywiz.models.User;
+import com.bumptech.glide.Glide;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class SearchContactsAdapter extends RecyclerView.Adapter<SearchContactsAdapter.ListHolder> {
 
     private Context context;
     private ArrayList<Contact> contacts;
     private LayoutInflater inflater;
+    private UserDA userDA;
 
     public SearchContactsAdapter(Context context, ArrayList<Contact> contacts) {
         this.context = context;
         this.contacts = contacts;
         inflater = LayoutInflater.from(context);
+        userDA = new UserDA();
     }
 
     @Override
@@ -30,8 +41,25 @@ public class SearchContactsAdapter extends RecyclerView.Adapter<SearchContactsAd
     }
 
     @Override
-    public void onBindViewHolder(ListHolder holder, int position) {
+    public void onBindViewHolder(final ListHolder holder, int position) {
+        final Contact contact = contacts.get(position);
 
+        userDA.queryUserByUID(contact.getKey()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                    User user = child.getValue(User.class);
+
+                    Glide.with(context).load(user.getPhoto_url()).
+                            skipMemoryCache(true).into(holder.dp);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     @Override
@@ -41,8 +69,11 @@ public class SearchContactsAdapter extends RecyclerView.Adapter<SearchContactsAd
 
     public class ListHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+        private CircleImageView dp;
+
         public ListHolder(View itemView) {
             super(itemView);
+            dp = itemView.findViewById(R.id.dp);
 
             itemView.setOnClickListener(this);
         }

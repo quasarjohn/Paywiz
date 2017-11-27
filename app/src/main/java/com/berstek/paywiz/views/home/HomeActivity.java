@@ -167,7 +167,7 @@ public class HomeActivity extends AppCompatActivity
     @Override
     public void onResultSelected(User user) {
         Intent intent = new Intent(this, ProfileActivity.class);
-        intent.putExtra("key", user.getPay_id());
+        intent.putExtra("key", user.getKey());
         startActivity(intent);
     }
 }
