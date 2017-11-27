@@ -77,10 +77,10 @@
         app:layout_constraintTop_toBottomOf="@+id/address_txt" />
 
     <TextView
-        android:id="@+id/transactions_txt"
+        android:id="@+id/pay_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="15 Transactions"
+        android:text="Pay ID: RAD34SD"
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -97,7 +97,7 @@
         android:textColor="@android:color/white"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/transactions_txt" />
+        app:layout_constraintTop_toBottomOf="@+id/pay_id" />
 
 </android.support.constraint.ConstraintLayout>
 

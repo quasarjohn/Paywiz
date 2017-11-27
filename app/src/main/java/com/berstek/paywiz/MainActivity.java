@@ -11,6 +11,8 @@ import com.berstek.paywiz.views.home.HomeActivity;
 import com.berstek.paywiz.views.user_profile.ProfileActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
+import org.apache.commons.lang3.RandomStringUtils;
+
 public class MainActivity extends AppCompatActivity implements LoginSignUpFragment.AccountSetupListener {
 
     private FirebaseAuth auth = FirebaseAuth.getInstance();

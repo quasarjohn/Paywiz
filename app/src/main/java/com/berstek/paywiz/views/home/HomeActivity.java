@@ -1,12 +1,8 @@
 package com.berstek.paywiz.views.home;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
-import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -25,6 +21,7 @@ import com.berstek.paywiz.models.Contact;
 import com.berstek.paywiz.models.User;
 import com.berstek.paywiz.utils.CustomImageUtils;
 import com.berstek.paywiz.utils.UserUtils;
+import com.berstek.paywiz.views.account_setup.EditUserInfoActivity;
 import com.berstek.paywiz.views.search.SearchContactsAdapter;
 import com.berstek.paywiz.views.search.SearchResultsAdapter;
 import com.berstek.paywiz.views.search.SearchUserDialogFragment;
@@ -36,8 +33,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.concurrent.ExecutionException;
-
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener,
         SearchContactsAdapter.OnContactSelectedListener,
@@ -45,7 +40,7 @@ public class HomeActivity extends AppCompatActivity
 
     private ImageView searchBtn;
     private TextView appTitle, nameTxt, addressTxt, phoneTxt,
-            transactionsTxt, ratingTxt, verifiedTxt;
+            payIDTxt, ratingTxt, verifiedTxt;
     private ImageView dpBlurred, dp;
     private ConstraintLayout navHeader;
 
@@ -76,7 +71,7 @@ public class HomeActivity extends AppCompatActivity
         nameTxt = navHeader.findViewById(R.id.name_txt);
         addressTxt = navHeader.findViewById(R.id.address_txt);
         phoneTxt = navHeader.findViewById(R.id.phone_txt);
-        transactionsTxt = navHeader.findViewById(R.id.transactions_txt);
+        payIDTxt = navHeader.findViewById(R.id.pay_id);
         ratingTxt = navHeader.findViewById(R.id.rating_txt);
         verifiedTxt = navHeader.findViewById(R.id.verified_txt);
 
@@ -100,7 +95,7 @@ public class HomeActivity extends AppCompatActivity
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
                     final User user = child.getValue(User.class);
                     nameTxt.setText(user.getFullName());
-
+                    payIDTxt.setText(user.getPay_id());
                     Glide.with(HomeActivity.this).
                             load(user.getPhoto_url()).skipMemoryCache(true).into(dp);
 
@@ -135,6 +130,11 @@ public class HomeActivity extends AppCompatActivity
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             finish();
+        } else if (id == R.id.nav_settings) {
+            Intent intent = new Intent(this, EditUserInfoActivity.class);
+//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -144,7 +144,10 @@ public class HomeActivity extends AppCompatActivity
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.search_btn) {
+
+        int id = view.getId();
+
+        if (id == R.id.search_btn) {
             SearchUserDialogFragment fragment = new SearchUserDialogFragment();
             fragment.setContactSelectedListener(this);
             fragment.setResultSelectedListener(this);

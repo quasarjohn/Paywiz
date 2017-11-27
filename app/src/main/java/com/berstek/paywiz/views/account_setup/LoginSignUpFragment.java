@@ -45,6 +45,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
+import org.apache.commons.lang3.RandomStringUtils;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -219,6 +221,8 @@ public class LoginSignUpFragment extends Fragment implements View.OnClickListene
                                         user.setDate_created(System.currentTimeMillis());
                                         user.setEmail(firebaseUser.getEmail());
                                         user.setPhoto_url(acct.getPhotoUrl().toString());
+                                        //TOCO check for collision
+                                        user.setPay_id(RandomStringUtils.randomAlphanumeric(8).toUpperCase());
 
                                         userDA.addUser(firebaseUser.getUid(), user);
 
