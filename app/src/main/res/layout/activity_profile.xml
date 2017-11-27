@@ -49,7 +49,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.26" />
+                    app:layout_constraintVertical_bias="0.24000001" />
 
                 <ImageView
                     android:foreground="@drawable/ripple25dp"
@@ -72,6 +72,7 @@
                     android:id="@+id/name_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:text="Emma Watson"
                     android:textColor="@android:color/white"
                     android:textSize="20sp"

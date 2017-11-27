@@ -35,7 +35,7 @@ import java.util.ArrayList;
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ImageView dp, dpBlurred, backImg;
-    private TextView nameTxt;
+    private TextView nameTxt, addressTxt, phoneTxt;
     private Button addContactBtn;
 
     private CustomImageUtils customImageUtils;
@@ -46,6 +46,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     private String key = "";
 
     private ContactDA contactDA;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +60,6 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         userDA = new UserDA();
         contactDA = new ContactDA();
 
-        //uses paywiz ID as param for search
         key = getIntent().getExtras().getString("key");
 
         customImageUtils = new CustomImageUtils();
@@ -69,6 +69,8 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         backImg = findViewById(R.id.back_img);
         nameTxt = findViewById(R.id.name_txt);
         addContactBtn = findViewById(R.id.add_contact_btn);
+        addressTxt = findViewById(R.id.address_txt);
+        phoneTxt = findViewById(R.id.phone_txt);
 
         BitmapDrawable img = (BitmapDrawable) dpBlurred.getDrawable();
         Bitmap bitmap = img.getBitmap();
@@ -87,12 +89,15 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void loadUserData() {
-        userDA.queryUserByPayID(key).addListenerForSingleValueEvent(new ValueEventListener() {
+        userDA.queryUserByUID(key).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
-                    User user = child.getValue(User.class);
+                    user = child.getValue(User.class);
+                    user.setKey(child.getKey());
                     nameTxt.setText(user.getFullName());
+                    addressTxt.setText("  " + user.getAddress_city() + ", Philippines");
+                    phoneTxt.setText("  " + user.getPhone_number());
                     Glide.with(ProfileActivity.this).
                             load(user.getPhoto_url()).
                             skipMemoryCache(true).into(dp);
@@ -129,7 +134,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         if (id == R.id.back_img)
             super.onBackPressed();
         else if (id == R.id.add_contact_btn) {
-            contactDA.addContact(key, UserUtils.getUID());
+            contactDA.addContact(user.getKey(), UserUtils.getUID());
         }
     }
 }
