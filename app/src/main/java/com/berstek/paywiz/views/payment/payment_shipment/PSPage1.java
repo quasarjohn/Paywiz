@@ -47,7 +47,10 @@ public class PSPage1 extends Fragment implements View.OnClickListener {
         title = view.findViewById(R.id.title_edit);
         details = view.findViewById(R.id.details_edit);
         uploadBtn = view.findViewById(R.id.upload_btn);
-        nextBtn = view.findViewById(R.id.upload_btn);
+        nextBtn = view.findViewById(R.id.next_btn);
+
+        nextBtn.setOnClickListener(this);
+        uploadBtn.setOnClickListener(this);
 
         return view;
     }
