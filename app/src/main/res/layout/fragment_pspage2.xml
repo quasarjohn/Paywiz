@@ -87,7 +87,7 @@
         app:layout_constraintTop_toBottomOf="@+id/product_name" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/product_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -101,22 +101,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
         android:text="Warranty Days:"
         android:textColor="@color/colorPrimary"
         android:textSize="12sp"
         android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/product_image" />
 
-    <RadioButton
-        android:id="@+id/radioButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/oval"
-        android:backgroundTint="@color/colorPrimary"
-        android:text="1"
-        android:textColor="@android:color/white"
-        tools:layout_editor_absoluteX="32dp"
-        tools:layout_editor_absoluteY="319dp" />
 </android.support.constraint.ConstraintLayout>
