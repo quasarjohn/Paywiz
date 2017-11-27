@@ -2,17 +2,23 @@ package com.berstek.paywiz.models;
 
 public class Transaction {
 
+    //required attribs
     private String title, detail;
     private String sender_uid, receiver_uid;
+    private long creation_date;
+    private double amount;
+
+
+    //optional attribs for payment for shipment
+    private double trans_charge, percent_charge;
+    private long expiration_date, accepted_date, shipment_date;
     private String address;
-    private TransactionType transaction_type;
+    private ShippingType transaction_type;
     private Status status;
-    private long creation_date, expiration_date, accepted_date, shipment_date;
-    private double amount, trans_charge, percent_charge;
     private Feedback feedback;
     private Courier courier;
 
-    public enum TransactionType {
+    public enum ShippingType {
         DOOR, PICKUP
     }
 
@@ -73,11 +79,11 @@ public class Transaction {
         this.address = address;
     }
 
-    public TransactionType getTransaction_type() {
+    public ShippingType getTransaction_type() {
         return transaction_type;
     }
 
-    public void setTransaction_type(TransactionType transaction_type) {
+    public void setTransaction_type(ShippingType transaction_type) {
         this.transaction_type = transaction_type;
     }
 

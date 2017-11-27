@@ -95,11 +95,13 @@ public class HomeActivity extends AppCompatActivity
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
                     final User user = child.getValue(User.class);
                     nameTxt.setText(user.getFullName());
-                    payIDTxt.setText(user.getPay_id());
+                    payIDTxt.setText("PAY ID: " + user.getPay_id());
+                    addressTxt.setText(user.getAddress_city() + ", Philippines");
                     Glide.with(HomeActivity.this).
                             load(user.getPhoto_url()).skipMemoryCache(true).into(dp);
 
-                    new CustomImageUtils().blurImage(HomeActivity.this, user.getPhoto_url(), dpBlurred, false);
+                    new CustomImageUtils().blurImage(HomeActivity.this,
+                                user.getPhoto_url(), dpBlurred, false);
                 }
             }
 
