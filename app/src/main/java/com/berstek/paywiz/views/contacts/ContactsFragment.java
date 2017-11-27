@@ -30,11 +30,11 @@ public class ContactsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_contacts, container, false);
-        recyclerView = view.findViewById(R.id.contact_recyclerview);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        view = inflater.inflate(R.layout.fragment_pspage2, container, false);
+        //recyclerView = view.findViewById(R.id.contact_recyclerview);
+        //recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        loadContacts();
+        //loadContacts();
         return view;
     }
 
