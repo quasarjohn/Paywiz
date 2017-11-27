@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText7"
+        android:id="@+id/brgy_edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
@@ -49,8 +49,8 @@
         android:layout_marginTop="16dp"
         android:text="DETAILS"
         android:textColor="@color/colorPrimary"
-        app:layout_constraintStart_toStartOf="@+id/editText7"
-        app:layout_constraintTop_toBottomOf="@+id/editText7" />
+        app:layout_constraintStart_toStartOf="@+id/brgy_edit"
+        app:layout_constraintTop_toBottomOf="@+id/brgy_edit" />
 
     <EditText
         android:id="@+id/editText9"

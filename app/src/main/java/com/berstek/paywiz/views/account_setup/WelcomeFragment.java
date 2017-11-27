@@ -31,6 +31,7 @@ public class WelcomeFragment extends Fragment implements OnUserQueriedListener,
     private ImageView dp, logo;
     private TextView welcome;
     private Button continueBtn;
+    private User user;
 
     public WelcomeFragment() {
         // Required empty public constructor
@@ -38,8 +39,6 @@ public class WelcomeFragment extends Fragment implements OnUserQueriedListener,
 
     private AnimatorSet welcomeAnimation;
     private ConstraintLayout constraintLayout;
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -61,6 +60,10 @@ public class WelcomeFragment extends Fragment implements OnUserQueriedListener,
 
     @Override
     public void onUserQueried(User user) {
+        this.user = user;
+
+        if(!user.isAccount_setup_finished())
+            continueBtn.setText("SETUP ACCOUNT");
 
         Glide.with(getContext()).load(user.getPhoto_url()).skipMemoryCache(true).into(dp);
         welcome.setText("Welcome, " + user.getFirstname() + "!");
@@ -80,7 +83,13 @@ public class WelcomeFragment extends Fragment implements OnUserQueriedListener,
 
     @Override
     public void onClick(View view) {
-        Intent intent = new Intent(getContext(), HomeActivity.class);
-        startActivity(intent);
+
+        if (user.isAccount_setup_finished()) {
+            Intent intent = new Intent(getContext(), HomeActivity.class);
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(getContext(), EditUserInfoActivity.class);
+            startActivity(intent);
+        }
     }
 }

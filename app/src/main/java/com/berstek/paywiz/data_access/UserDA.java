@@ -8,16 +8,21 @@ import com.google.firebase.database.Query;
 
 public class UserDA extends DA {
 
+    private final String node = "users";
+
     public Query queryUserByUID(String uid) {
-        return rootRef.child("users").orderByKey().equalTo(uid);
+        return rootRef.child(node).orderByKey().equalTo(uid);
     }
 
     public Query queryUserByPayID(String payID) {
-        return rootRef.child("users").orderByChild("pay_id").equalTo(payID);
+        return rootRef.child(node).orderByChild("pay_id").equalTo(payID);
     }
 
-
     public void addUser(String uid, User user) {
-        rootRef.child("users").child(uid).setValue(user);
+        rootRef.child(node).child(uid).setValue(user);
+    }
+
+    public void updateUser(User user) {
+        rootRef.child(node).child(user.getKey()).setValue(user);
     }
 }

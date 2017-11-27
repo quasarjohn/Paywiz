@@ -9,16 +9,19 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.berstek.paywiz.R;
+import com.berstek.paywiz.data_access.ContactDA;
 import com.berstek.paywiz.data_access.DA;
 import com.berstek.paywiz.data_access.UserDA;
 import com.berstek.paywiz.models.Feedback;
 import com.berstek.paywiz.models.Transaction;
 import com.berstek.paywiz.models.User;
 import com.berstek.paywiz.utils.CustomImageUtils;
+import com.berstek.paywiz.utils.UserUtils;
 import com.berstek.paywiz.views.feedback.FeedbacksAdapter;
 import com.berstek.paywiz.views.home.HomeActivity;
 import com.berstek.paywiz.views.transactions.TransactionsAdapter;
@@ -33,6 +36,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
     private ImageView dp, dpBlurred, backImg;
     private TextView nameTxt;
+    private Button addContactBtn;
 
     private CustomImageUtils customImageUtils;
 
@@ -41,6 +45,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     private RecyclerView recyclerView;
     private String key = "";
 
+    private ContactDA contactDA;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +57,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
 
         userDA = new UserDA();
+        contactDA = new ContactDA();
 
         //uses paywiz ID as param for search
         key = getIntent().getExtras().getString("key");
@@ -62,6 +68,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         dpBlurred = findViewById(R.id.dp_blurred);
         backImg = findViewById(R.id.back_img);
         nameTxt = findViewById(R.id.name_txt);
+        addContactBtn = findViewById(R.id.add_contact_btn);
 
         BitmapDrawable img = (BitmapDrawable) dpBlurred.getDrawable();
         Bitmap bitmap = img.getBitmap();
@@ -73,6 +80,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         backImg.setOnClickListener(this);
+        addContactBtn.setOnClickListener(this);
 
         loadUserData();
         loadFeedbacks();
@@ -116,6 +124,12 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
-        super.onBackPressed();
+        int id = view.getId();
+
+        if (id == R.id.back_img)
+            super.onBackPressed();
+        else if (id == R.id.add_contact_btn) {
+            contactDA.addContact(key, UserUtils.getUID());
+        }
     }
 }
