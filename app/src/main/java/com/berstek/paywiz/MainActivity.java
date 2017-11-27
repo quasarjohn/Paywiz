@@ -10,6 +10,7 @@ import com.berstek.paywiz.models.User;
 import com.berstek.paywiz.views.home.HomeActivity;
 import com.berstek.paywiz.views.user_profile.ProfileActivity;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
@@ -23,6 +24,8 @@ public class MainActivity extends AppCompatActivity implements LoginSignUpFragme
         setContentView(R.layout.activity_main);
 
         getSupportActionBar().hide();
+
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
         if (auth.getCurrentUser() == null)
             //redirect to login page

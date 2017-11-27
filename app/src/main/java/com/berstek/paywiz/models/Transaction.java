@@ -1,5 +1,7 @@
 package com.berstek.paywiz.models;
 
+import java.util.ArrayList;
+
 public class Transaction {
 
     //required attribs
@@ -16,6 +18,7 @@ public class Transaction {
     private Status status;
     private Feedback feedback;
     private Courier courier;
+    private ArrayList<String> img_urls;
 
     public enum ShippingType {
         DOOR, PICKUP
@@ -156,5 +159,13 @@ public class Transaction {
 
     public void setFeedback(Feedback feedback) {
         this.feedback = feedback;
+    }
+
+    public ArrayList<String> getImg_urls() {
+        return img_urls;
+    }
+
+    public void setImg_urls(ArrayList<String> img_urls) {
+        this.img_urls = img_urls;
     }
 }
