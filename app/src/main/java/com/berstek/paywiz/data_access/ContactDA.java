@@ -8,7 +8,7 @@ public class ContactDA extends DA {
     private final String node = "contacts";
 
     public Query queryuserContactsByUID(String uid) {
-        return rootRef.child(node).orderByKey().equalTo(uid);
+        return rootRef.child(node).child(uid);
     }
 
     public void addContact(String contact_uid, String user_uid) {

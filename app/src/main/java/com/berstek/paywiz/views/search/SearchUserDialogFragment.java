@@ -20,9 +20,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.berstek.paywiz.R;
+import com.berstek.paywiz.data_access.ContactDA;
 import com.berstek.paywiz.data_access.UserDA;
 import com.berstek.paywiz.models.Contact;
 import com.berstek.paywiz.models.User;
+import com.berstek.paywiz.utils.UserUtils;
 import com.berstek.paywiz.views.search.SearchResultsAdapter.OnResultSelectedListener;
 import com.berstek.paywiz.views.search.SearchContactsAdapter.OnContactSelectedListener;
 import com.google.firebase.database.DataSnapshot;
@@ -43,6 +45,7 @@ public class SearchUserDialogFragment extends DialogFragment
     }
 
     private UserDA userDA;
+    private ContactDA contactDA;
 
     private OnResultSelectedListener resultSelectedListener;
     private OnContactSelectedListener contactSelectedListener;
@@ -50,6 +53,8 @@ public class SearchUserDialogFragment extends DialogFragment
     private ImageView backImg;
     private EditText searchEdit;
     private RecyclerView recviewContacts, recviewResults;
+
+    private ArrayList<Contact> contacts;
 
 
     private View view;
@@ -65,6 +70,7 @@ public class SearchUserDialogFragment extends DialogFragment
         recviewResults = view.findViewById(R.id.recview_results);
 
         userDA = new UserDA();
+        contactDA = new ContactDA();
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -74,17 +80,7 @@ public class SearchUserDialogFragment extends DialogFragment
         searchEdit.addTextChangedListener(this);
         backImg.setOnClickListener(this);
 
-        ArrayList<Contact> contacts = new ArrayList<>();
-
-        for (int i = 0; i < 20; i++) {
-            Contact contact = new Contact();
-            contact.setKey("contact key");
-            contacts.add(contact);
-        }
-
-        SearchContactsAdapter searchContactsAdapter = new SearchContactsAdapter(getContext(), contacts);
-        searchContactsAdapter.setContactSelectedListener(this);
-        recviewContacts.setAdapter(searchContactsAdapter);
+        loadContacts();
 
         return view;
     }
@@ -137,6 +133,30 @@ public class SearchUserDialogFragment extends DialogFragment
             }
         }
     };
+
+    private void loadContacts() {
+        contactDA.queryuserContactsByUID(UserUtils.getUID()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                contacts = new ArrayList<>();
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                    Contact contact = new Contact();
+                    contact.setKey(child.getKey());
+                    contacts.add(contact);
+                }
+
+                SearchContactsAdapter searchContactsAdapter = new SearchContactsAdapter(getContext(),
+                        contacts);
+                searchContactsAdapter.setContactSelectedListener(SearchUserDialogFragment.this);
+                recviewContacts.setAdapter(searchContactsAdapter);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {

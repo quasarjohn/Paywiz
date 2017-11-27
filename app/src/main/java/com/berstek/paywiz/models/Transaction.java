@@ -8,7 +8,6 @@ public class Transaction {
     private long creation_date;
     private double amount;
 
-
     //optional attribs for payment for shipment
     private double trans_charge, percent_charge;
     private long expiration_date, accepted_date, shipment_date;
