@@ -33,7 +33,7 @@ public class EditUserInfoActivity extends AppCompatActivity implements View.OnCl
 
         state = findViewById(R.id.state_edit);
         saveBtn = findViewById(R.id.save_btn);
-        brgy = findViewById(R.id.brgy_edit);
+        brgy = findViewById(R.id.title_edit);
         postal = findViewById(R.id.postal_code_edit);
         city = findViewById(R.id.city_edit);
         phone = findViewById(R.id.phone_edit);

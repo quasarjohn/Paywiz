@@ -1,5 +1,6 @@
 package com.berstek.paywiz.views.payment.payment_shipment;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -17,7 +18,7 @@ import com.berstek.paywiz.views.search.SearchUserDialogFragment;
 import java.util.ArrayList;
 
 public class PaymentShipmentActivity extends AppCompatActivity
-        implements PSPage1.TitleAndAmountInputListener,
+        implements PSPage1.PSPage1Listener,
         PSPage3.CourierAndDueDateListener, ConfirmationDialogListener,
         SearchContactsAdapter.OnContactSelectedListener,
         SearchResultsAdapter.OnResultSelectedListener {
@@ -51,7 +52,10 @@ public class PaymentShipmentActivity extends AppCompatActivity
 
     @Override
     public void onContactSelected(Contact contact) {
-
+        searchUserDialogFragment.dismiss();
+        PSPage1 psPage1 = new PSPage1();
+        getSupportFragmentManager().beginTransaction().
+                replace(R.id.activity_payment, psPage1).addToBackStack(null).commit();
     }
 
     @Override
@@ -63,10 +67,12 @@ public class PaymentShipmentActivity extends AppCompatActivity
     }
 
     @Override
-    public void onTitleAndAmountReady(String title, String details, String amount) {
+    public void onPage1Ready(String title, String details, String amount,
+                             ArrayList<String> imgURLs) {
         transaction.setTitle(title);
         transaction.setDetail(details);
         transaction.setAmount(Double.parseDouble(amount));
+        transaction.setImg_urls(imgURLs);
         PSPage2 page2 = new PSPage2();
         getSupportFragmentManager().beginTransaction().replace(R.id.activity_payment, page2).
                 addToBackStack(null).commit();
