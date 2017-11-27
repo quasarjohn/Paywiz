@@ -7,7 +7,9 @@ import android.os.Bundle;
 import com.berstek.paywiz.data_access.TestDA;
 import com.berstek.paywiz.views.account_setup.LoginSignUpFragment;
 import com.berstek.paywiz.models.User;
+import com.berstek.paywiz.views.contacts.ContactsFragment;
 import com.berstek.paywiz.views.home.HomeActivity;
+import com.berstek.paywiz.views.payment.payment_shipment.PSPage2;
 import com.berstek.paywiz.views.user_profile.ProfileActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
