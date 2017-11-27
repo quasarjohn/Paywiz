@@ -14,19 +14,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Sending Payment for Package to"
+        android:text="Payment to"
         android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/circleImageView"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="8dp"
-        android:src="@drawable/emma"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
     <EditText
         android:id="@+id/editText7"
@@ -48,8 +39,8 @@
         android:layout_marginTop="16dp"
         android:text="TITLE"
         android:textColor="@color/colorPrimary"
-        app:layout_constraintStart_toStartOf="@+id/circleImageView"
-        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+        app:layout_constraintStart_toStartOf="@+id/textView15"
+        app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
     <TextView
         android:id="@+id/textView14"
@@ -95,26 +86,14 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
+        android:textStyle="italic|bold"
         android:id="@+id/textView16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
         android:text="Emma Watson"
-        app:layout_constraintStart_toEndOf="@+id/circleImageView"
-        app:layout_constraintTop_toTopOf="@+id/circleImageView" />
-
-    <TextView
-        android:id="@+id/textView17"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:layout_marginStart="8dp"
-        android:drawableLeft="@drawable/ic_rating"
-        android:drawableTint="@android:color/darker_gray"
-        android:text="4.0"
-        app:layout_constraintBottom_toBottomOf="@+id/circleImageView"
-        app:layout_constraintStart_toEndOf="@+id/circleImageView" />
+        app:layout_constraintStart_toEndOf="@+id/textView15"
+        app:layout_constraintTop_toTopOf="@+id/textView15" />
 
     <Button
         android:id="@+id/button3"
