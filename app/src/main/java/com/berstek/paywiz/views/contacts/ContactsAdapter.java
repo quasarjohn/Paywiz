@@ -37,7 +37,12 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ListHo
 
     @Override
     public void onBindViewHolder(ListHolder holder, int position) {
+        Contact contact = contacts.get(position);
+        //eto pa dito ko gagalaw
 
+        //bale i set key mo muna yung contact sa contactsFragment para makuha mo yung UID
+
+        //tapos sa userDA, queryUserByUID ka
     }
 
     @Override

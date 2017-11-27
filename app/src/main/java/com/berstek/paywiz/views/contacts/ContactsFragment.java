@@ -40,6 +40,7 @@ public class ContactsFragment extends Fragment {
 
     private void loadContacts() {
         //TODO fetch data from database
+        //dito bro yung dapat mong ayusin
         ArrayList<Contact> contacts = new ArrayList<>();
         Contact contact = new Contact();
 
