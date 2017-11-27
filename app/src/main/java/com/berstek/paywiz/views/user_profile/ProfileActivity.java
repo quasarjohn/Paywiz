@@ -2,6 +2,7 @@ package com.berstek.paywiz.views.user_profile;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.graphics.Palette;
@@ -36,7 +37,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
     private ImageView dp, dpBlurred, backImg;
     private TextView nameTxt, addressTxt, phoneTxt;
-    private Button addContactBtn;
+    private ImageView addContactBtn;
 
     private CustomImageUtils customImageUtils;
 

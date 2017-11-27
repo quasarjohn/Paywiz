@@ -20,10 +20,14 @@ import java.util.ArrayList;
  */
 public class PSPage2 extends Fragment {
     private View view;
-    private TextView amount,balance,product_name,product_details,warranty_1,warranty_2,warranty_3,warranty_4,warranty_5,warranty_6,
-            warranty_7,meetup,shipping,lbc_express,jrs_express,courier_2go;
+    private TextView amount, balance, product_name,
+            product_details, warranty_1, warranty_2,
+            warranty_3, warranty_4, warranty_5, warranty_6,
+            warranty_7, meetup, shipping, lbc_express,
+            jrs_express, courier_2go;
     private ImageView product_image;
     private Button proceed_button;
+
     public PSPage2() {
         // Required empty public constructor
     }
@@ -61,5 +65,5 @@ public class PSPage2 extends Fragment {
         proceed_button = view.findViewById(R.id.proceed_button);
         return view;
     }
-    
+
 }
