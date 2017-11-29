@@ -142,6 +142,7 @@
         app:layout_constraintTop_toBottomOf="@+id/send_to_bank_account_cardview">
 
         <android.support.constraint.ConstraintLayout
+            android:id="@+id/pay_shipment"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 

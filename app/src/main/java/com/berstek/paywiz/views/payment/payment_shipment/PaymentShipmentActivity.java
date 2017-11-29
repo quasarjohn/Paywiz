@@ -19,9 +19,7 @@ import java.util.ArrayList;
 
 public class PaymentShipmentActivity extends AppCompatActivity
         implements PSPage1.PSPage1Listener,
-        PSPage3.CourierAndDueDateListener, ConfirmationDialogListener,
-        SearchContactsAdapter.OnContactSelectedListener,
-        SearchResultsAdapter.OnResultSelectedListener {
+        PSPage3.CourierAndDueDateListener, ConfirmationDialogListener {
 
     /*
     PAYMENT FLOW
@@ -32,36 +30,20 @@ public class PaymentShipmentActivity extends AppCompatActivity
      */
 
     private Transaction transaction;
-    private SearchUserDialogFragment searchUserDialogFragment;
+    private String receiver_uid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
 
+        receiver_uid = getIntent().getExtras().getString("receiver_uid");
+
         transaction = new Transaction();
         transaction.setSender_uid(UserUtils.getUID());
         transaction.setStatus(Transaction.Status.AWAITING_ACCEPTANCE);
         transaction.setCreation_date(System.currentTimeMillis());
 
-        searchUserDialogFragment = new SearchUserDialogFragment();
-        searchUserDialogFragment.setResultSelectedListener(this);
-        searchUserDialogFragment.setContactSelectedListener(this);
-        searchUserDialogFragment.show(getSupportFragmentManager(), null);
-    }
-
-    @Override
-    public void onContactSelected(Contact contact) {
-        searchUserDialogFragment.dismiss();
-        PSPage1 psPage1 = new PSPage1();
-        getSupportFragmentManager().beginTransaction().
-                replace(R.id.activity_payment, psPage1).addToBackStack(null).commit();
-    }
-
-    @Override
-    public void onResultSelected(User user) {
-        transaction.setReceiver_uid(user.getPay_id());
-        searchUserDialogFragment.dismiss();
         PSPage1 page1 = new PSPage1();
         getSupportFragmentManager().beginTransaction().replace(R.id.activity_payment, page1).commit();
     }

@@ -12,8 +12,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.berstek.paywiz.R;
+import com.berstek.paywiz.models.Contact;
 import com.berstek.paywiz.models.Transaction;
+import com.berstek.paywiz.models.User;
+import com.berstek.paywiz.views.payment.PaymentTypeActivity;
 import com.berstek.paywiz.views.payment.payment_shipment.PaymentShipmentActivity;
+import com.berstek.paywiz.views.search.SearchContactsAdapter;
+import com.berstek.paywiz.views.search.SearchResultsAdapter;
+import com.berstek.paywiz.views.search.SearchUserDialogFragment;
 
 import java.util.ArrayList;
 
@@ -74,7 +80,7 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
         int id = view.getId();
 
         if (id == R.id.send) {
-            Intent intent = new Intent(getContext(), PaymentShipmentActivity.class);
+            Intent intent = new Intent(getContext(), PaymentTypeActivity.class);
             startActivity(intent);
         } else if (id == R.id.receive) {
 
