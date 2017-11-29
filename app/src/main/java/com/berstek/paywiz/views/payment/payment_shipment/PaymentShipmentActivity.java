@@ -1,19 +1,12 @@
 package com.berstek.paywiz.views.payment.payment_shipment;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.berstek.paywiz.R;
 import com.berstek.paywiz.callbacks.ConfirmationDialogListener;
-import com.berstek.paywiz.data_access.TestDA;
-import com.berstek.paywiz.models.Contact;
 import com.berstek.paywiz.models.Transaction;
-import com.berstek.paywiz.models.User;
 import com.berstek.paywiz.utils.UserUtils;
-import com.berstek.paywiz.views.search.SearchContactsAdapter;
-import com.berstek.paywiz.views.search.SearchResultsAdapter;
-import com.berstek.paywiz.views.search.SearchUserDialogFragment;
 
 import java.util.ArrayList;
 
@@ -35,7 +28,7 @@ public class PaymentShipmentActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_payment);
+        setContentView(R.layout.activity_payment_shipment);
 
         receiver_uid = getIntent().getExtras().getString("receiver_uid");
 
@@ -56,6 +49,11 @@ public class PaymentShipmentActivity extends AppCompatActivity
         transaction.setAmount(Double.parseDouble(amount));
         transaction.setImg_urls(imgURLs);
         PSPage2 page2 = new PSPage2();
+        Bundle bundle = new Bundle();
+        ArrayList transactions = new ArrayList<>();
+        transactions.add(transaction);
+        bundle.putParcelableArrayList("transactions", transactions);
+        page2.setArguments(bundle);
         getSupportFragmentManager().beginTransaction().replace(R.id.activity_payment, page2).
                 addToBackStack(null).commit();
     }

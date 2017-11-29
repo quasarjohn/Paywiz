@@ -7,10 +7,6 @@
     android:layout_height="match_parent"
     tools:context="com.berstek.paywiz.views.payment.payment_shipment.PaymentShipmentActivity">
 
-    <include
-        layout="@layout/app_bar_back"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
     <FrameLayout
         android:id="@+id/activity_payment"

@@ -1,272 +1,211 @@
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.berstek.paywiz.views.payment.payment_shipment.PSPage2">
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
+    <include
+        layout="@layout/app_bar_back_with_next"
+        />
 
-    <TextView
-        android:id="@+id/amount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginStart="8dp"
-        android:text="21,000"
-        android:textColor="@color/colorPrimary"
-        android:textSize="35sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.41"
-        app:layout_constraintStart_toEndOf="@+id/php"
-        app:layout_constraintTop_toTopOf="parent" />
+    <android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.berstek.paywiz.views.payment.payment_shipment.PSPage2">
 
-    <TextView
-        android:id="@+id/php"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/oval"
-        android:backgroundTint="@color/colorPrimary"
-        android:paddingEnd="8dp"
-        android:paddingStart="8dp"
-        android:text="PHP"
-        android:textColor="@android:color/white"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/amount"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/amount" />
+        <!-- TODO: Update blank fragment layout -->
 
-    <TextView
-        android:id="@+id/available_balance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Available balance: "
-        app:layout_constraintBaseline_toBaselineOf="@+id/available_balance_value"
-        app:layout_constraintEnd_toStartOf="@+id/available_balance_value" />
+        <TextView
+            android:id="@+id/amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:layout_marginStart="8dp"
+            android:text="21,000"
+            android:textColor="@color/colorPrimary"
+            android:textSize="35sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.41"
+            app:layout_constraintStart_toEndOf="@+id/php"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/available_balance_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:text="100,000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/amount" />
+        <TextView
+            android:id="@+id/php"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/oval"
+            android:backgroundTint="@color/colorPrimary"
+            android:paddingEnd="8dp"
+            android:paddingStart="8dp"
+            android:text="PHP"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/amount"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/amount" />
 
-    <TextView
-        android:id="@+id/product_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:text="Asus Zenfone Max"
-        android:textColor="@color/colorPrimary"
-        android:textSize="26sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/available_balance" />
+        <TextView
+            android:id="@+id/available_balance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Available balance: "
+            app:layout_constraintBaseline_toBaselineOf="@+id/available_balance_value"
+            app:layout_constraintEnd_toStartOf="@+id/available_balance_value" />
 
-    <TextView
-        android:id="@+id/product_details"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginStart="32dp"
-        android:hyphenationFrequency="none"
-        android:text="Complete package with 6 months warranty on Asus Store"
-        android:textColor="@color/colorPrimary"
-        android:textSize="12sp"
-        android:textStyle="italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/product_name" />
+        <TextView
+            android:id="@+id/available_balance_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="100,000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/amount" />
 
-    <ImageView
-        android:id="@+id/product_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:src="@mipmap/ic_launcher"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/product_details" />
+        <TextView
+            android:id="@+id/product_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:text="Asus Zenfone Max"
+            android:textColor="@color/colorPrimary"
+            android:textSize="26sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/available_balance" />
 
-    <TextView
-        android:id="@+id/warranty_days"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:text="Time Limit (Days)"
-        android:textColor="@color/colorPrimary"
-        android:textSize="12sp"
-        android:textStyle="italic"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/product_image" />
+        <TextView
+            android:id="@+id/product_details"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:layout_marginStart="32dp"
+            android:hyphenationFrequency="none"
+            android:text="Complete package with 6 months warranty on Asus Store"
+            android:textColor="@color/colorPrimary"
+            android:textSize="12sp"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/product_name" />
 
-    <TextView
-        android:id="@+id/warranty_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="32dp"
-        android:text="1"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/warranty_days" />
+        <ImageView
+            android:id="@+id/product_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:src="@mipmap/ic_launcher"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/product_details" />
 
-    <TextView
-        android:id="@+id/warranty_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:text="2"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/warranty_1"
-        app:layout_constraintTop_toBottomOf="@+id/warranty_days" />
+        <TextView
+            android:id="@+id/warranty_days"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:text="Time Limit (Days)"
+            android:textColor="@color/colorPrimary"
+            android:textSize="12sp"
+            android:textStyle="italic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/product_image" />
 
-    <TextView
-        android:id="@+id/warranty_3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:text="3"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/warranty_2"
-        app:layout_constraintTop_toBottomOf="@+id/warranty_days" />
+        <TextView
+            android:id="@+id/Courier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:text="Courier"
+            android:textColor="@color/colorPrimary"
+            android:textSize="12sp"
+            android:textStyle="italic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/seekBar1" />
 
-    <TextView
-        android:id="@+id/warranty_4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:background="@android:drawable/presence_away"
-        android:backgroundTint="@color/colorPrimary"
-        android:text="4"
-        android:textAlignment="center"
-        android:textColor="@android:color/white"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/warranty_3"
-        app:layout_constraintTop_toBottomOf="@+id/warranty_days" />
+        <TextView
+            android:id="@+id/lbc_express"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/oval"
+            android:backgroundTint="@color/colorPrimary"
+            android:padding="6dp"
+            android:text="LBC Express"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Courier" />
 
-    <TextView
-        android:id="@+id/warranty_5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:text="5"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/warranty_4"
-        app:layout_constraintTop_toBottomOf="@+id/warranty_days" />
+        <TextView
+            android:id="@+id/jrs_express"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:text="JRS Express"
+            android:textColor="@color/colorPrimary"
+            android:textSize="12sp"
+            android:textStyle="italic"
+            app:layout_constraintStart_toEndOf="@+id/lbc_express"
+            app:layout_constraintTop_toTopOf="@+id/lbc_express" />
 
-    <TextView
-        android:id="@+id/warranty_6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:text="6"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/warranty_5"
-        app:layout_constraintTop_toBottomOf="@+id/warranty_days" />
+        <TextView
+            android:id="@+id/courier_2go"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:text="2GO"
+            android:textColor="@color/colorPrimary"
+            android:textSize="12sp"
+            android:textStyle="italic"
+            app:layout_constraintStart_toEndOf="@+id/jrs_express"
+            app:layout_constraintTop_toTopOf="@+id/jrs_express" />
 
-    <TextView
-        android:id="@+id/warranty_7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:text="7"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/warranty_6"
-        app:layout_constraintTop_toBottomOf="@+id/warranty_days" />
+        <SeekBar
+            android:id="@+id/seekBar1"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="8dp"
+            android:max="7"
+            android:progressBackgroundTint="@color/custom_red"
+            android:progressTint="@color/custom_red"
+            android:thumb="@drawable/unlike_button"
+            app:layout_constraintStart_toEndOf="@+id/textView12"
+            app:layout_constraintTop_toBottomOf="@+id/warranty_days" />
 
-    <TextView
-        android:id="@+id/Courier"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:text="Courier"
-        android:textColor="@color/colorPrimary"
-        android:textSize="12sp"
-        android:textStyle="italic"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/warranty_2" />
+        <TextView
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp"
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="7"
+            app:layout_constraintStart_toStartOf="@+id/warranty_days"
+            app:layout_constraintTop_toBottomOf="@+id/warranty_days" />
 
-    <TextView
-        android:id="@+id/lbc_express"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:background="@drawable/oval"
-        android:backgroundTint="@color/colorPrimary"
-        android:paddingEnd="6dp"
-        android:paddingStart="6dp"
-        android:text="LBC Express"
-        android:textColor="@android:color/white"
-        android:textSize="12sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Courier" />
+    </android.support.constraint.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/jrs_express"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:text="JRS Express"
-        android:textColor="@color/colorPrimary"
-        android:textSize="12sp"
-        android:textStyle="italic"
-        app:layout_constraintStart_toEndOf="@+id/lbc_express"
-        app:layout_constraintTop_toBottomOf="@+id/Courier" />
 
-    <TextView
-        android:id="@+id/courier_2go"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:text="2GO"
-        android:textColor="@color/colorPrimary"
-        android:textSize="12sp"
-        android:textStyle="italic"
-        app:layout_constraintStart_toEndOf="@+id/jrs_express"
-        app:layout_constraintTop_toBottomOf="@+id/Courier" />
-
-    <Button
-        android:id="@+id/proceed_button"
-        android:layout_width="wrap_content"
-        android:layout_height="35dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/oval"
-        android:backgroundTint="@color/colorPrimary"
-        android:drawingCacheQuality="low"
-        android:paddingEnd="8dp"
-        android:paddingStart="8dp"
-        android:text="Proceed"
-        android:textAllCaps="false"
-        android:textColor="@android:color/white"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/jrs_express"
-        app:layout_constraintVertical_bias="1.0" />
-
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

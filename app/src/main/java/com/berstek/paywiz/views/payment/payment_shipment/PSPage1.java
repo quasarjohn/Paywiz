@@ -1,7 +1,6 @@
 package com.berstek.paywiz.views.payment.payment_shipment;
 
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,17 +11,17 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.berstek.paywiz.R;
+import com.berstek.paywiz.views.parent_layouts.FragmentWithBackAndNext;
 
 import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PSPage1 extends Fragment implements View.OnClickListener {
+public class PSPage1 extends FragmentWithBackAndNext implements View.OnClickListener {
 
     private PSPage1Listener inputListener;
 
-    private View view;
     private EditText price, title, details;
     private Button uploadBtn, nextBtn;
 
@@ -47,10 +46,10 @@ public class PSPage1 extends Fragment implements View.OnClickListener {
         title = view.findViewById(R.id.title_edit);
         details = view.findViewById(R.id.details_edit);
         uploadBtn = view.findViewById(R.id.upload_btn);
-        nextBtn = view.findViewById(R.id.next_btn);
 
-        nextBtn.setOnClickListener(this);
         uploadBtn.setOnClickListener(this);
+
+        super.onCreateView(inflater, container, savedInstanceState);
 
         return view;
     }
