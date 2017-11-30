@@ -16,6 +16,7 @@ import com.berstek.paywiz.models.Contact;
 import com.berstek.paywiz.models.Transaction;
 import com.berstek.paywiz.models.User;
 import com.berstek.paywiz.views.payment.PaymentTypeActivity;
+import com.berstek.paywiz.views.payment.payment_shipment.PSConfirmationDialogFragment;
 import com.berstek.paywiz.views.payment.payment_shipment.PaymentShipmentActivity;
 import com.berstek.paywiz.views.search.SearchContactsAdapter;
 import com.berstek.paywiz.views.search.SearchResultsAdapter;
@@ -83,7 +84,8 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
             Intent intent = new Intent(getContext(), PaymentTypeActivity.class);
             startActivity(intent);
         } else if (id == R.id.receive) {
-
+            PSConfirmationDialogFragment fragment = new PSConfirmationDialogFragment();
+            fragment.show(getActivity().getFragmentManager(), null);
         } else if (id == R.id.cashin) {
 
         } else if (id == R.id.cashout) {

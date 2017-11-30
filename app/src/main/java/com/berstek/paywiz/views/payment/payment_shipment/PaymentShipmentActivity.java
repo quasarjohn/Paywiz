@@ -11,8 +11,7 @@ import com.berstek.paywiz.utils.UserUtils;
 import java.util.ArrayList;
 
 public class PaymentShipmentActivity extends AppCompatActivity
-        implements PSPage1.PSPage1Listener,
-        PSPage3.CourierAndDueDateListener, ConfirmationDialogListener {
+        implements PSPage1.PSPage1Listener, PSPage2.OnPage2ReadyListener {
 
     /*
     PAYMENT FLOW
@@ -58,19 +57,9 @@ public class PaymentShipmentActivity extends AppCompatActivity
                 addToBackStack(null).commit();
     }
 
-
     @Override
-    public void onCourierAndDueDateReady(Transaction.Courier courier, long due_date) {
-
-    }
-
-    @Override
-    public void onAgree() {
-
-    }
-
-    @Override
-    public void onCancel() {
-
+    public void onPage2Ready(Transaction transaction) {
+        PSConfirmationDialogFragment dialogFragment = new PSConfirmationDialogFragment();
+        dialogFragment.show(getFragmentManager(), null);
     }
 }

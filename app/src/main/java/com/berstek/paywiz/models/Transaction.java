@@ -1,8 +1,9 @@
 package com.berstek.paywiz.models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Transaction {
+public class Transaction implements Serializable {
 
     //required attribs
     private String title, detail;
