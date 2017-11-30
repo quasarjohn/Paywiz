@@ -2,6 +2,10 @@ package com.berstek.paywiz.utils;
 
 import android.widget.EditText;
 
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class CustomUtils {
 
     public static boolean editTextEmpty(EditText... args) {
@@ -12,5 +16,17 @@ public class CustomUtils {
         }
 
         return false;
+    }
+
+
+    public static String formatDF(double num) {
+        DecimalFormat df = new DecimalFormat("0.00");
+
+        return df.format(num);
+    }
+
+    public static String parseDateMMdd(long d) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd");
+        return dateFormat.format(new Date(d));
     }
 }

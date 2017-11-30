@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -77,8 +76,8 @@ public class PSPage2 extends FragmentWithBackAndNext implements View.OnClickList
         transaction.setTransaction_type(Transaction.ShippingType.PICKUP);
 
         amount = view.findViewById(R.id.amount);
-        product_name = view.findViewById(R.id.product_name);
-        product_details = view.findViewById(R.id.product_details);
+        product_name = view.findViewById(R.id.title);
+        product_details = view.findViewById(R.id.details);
 
         lbc_express = view.findViewById(R.id.lbc_express);
         jrs_express = view.findViewById(R.id.jrs_express);

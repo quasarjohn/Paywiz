@@ -11,7 +11,8 @@ import com.berstek.paywiz.utils.UserUtils;
 import java.util.ArrayList;
 
 public class PaymentShipmentActivity extends AppCompatActivity
-        implements PSPage1.PSPage1Listener, PSPage2.OnPage2ReadyListener {
+        implements PSPage1.PSPage1Listener, PSPage2.OnPage2ReadyListener,
+        ConfirmationDialogListener {
 
     /*
     PAYMENT FLOW
@@ -23,6 +24,7 @@ public class PaymentShipmentActivity extends AppCompatActivity
 
     private Transaction transaction;
     private String receiver_uid;
+    private PSConfirmationDialogFragment dialogFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +61,25 @@ public class PaymentShipmentActivity extends AppCompatActivity
 
     @Override
     public void onPage2Ready(Transaction transaction) {
-        PSConfirmationDialogFragment dialogFragment = new PSConfirmationDialogFragment();
+        dialogFragment = new PSConfirmationDialogFragment();
+        ArrayList transactions = new ArrayList();
+        transactions.add(transaction);
+
+        Bundle bundle = new Bundle();
+        bundle.putParcelableArrayList("transactions", transactions);
+        dialogFragment.setArguments(bundle);
+
+        dialogFragment.setDialogListener(this);
         dialogFragment.show(getFragmentManager(), null);
+    }
+
+    @Override
+    public void onAgree() {
+
+    }
+
+    @Override
+    public void onCancel() {
+        dialogFragment.dismiss();
     }
 }
