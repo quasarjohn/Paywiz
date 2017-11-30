@@ -52,5 +52,7 @@ public class MainActivity extends AppCompatActivity implements LoginSignUpFragme
     public void onSignUp(User user) {
         //TODO register user
     }
+
+    //test commit
 }
 
