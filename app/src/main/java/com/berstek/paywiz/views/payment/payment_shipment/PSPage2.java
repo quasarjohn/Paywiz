@@ -2,6 +2,7 @@ package com.berstek.paywiz.views.payment.payment_shipment;
 
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
@@ -48,6 +49,7 @@ public class PSPage2 extends FragmentWithBackAndNext implements View.OnClickList
     private EditText address;
     private UserDA userDA;
     private RadioGroup radioGroup;
+    private String selectedCourier;
 
     public PSPage2() {
         // Required empty public constructor
@@ -84,6 +86,7 @@ public class PSPage2 extends FragmentWithBackAndNext implements View.OnClickList
         lbc_express = view.findViewById(R.id.lbc_express);
         jrs_express = view.findViewById(R.id.jrs_express);
         courier_2go = view.findViewById(R.id.courier_2go);
+        selectedCourier = "lbc";
 
         seekBar = view.findViewById(R.id.seekbar);
         seekbar_days = view.findViewById(R.id.seekbar_days);
@@ -141,13 +144,47 @@ public class PSPage2 extends FragmentWithBackAndNext implements View.OnClickList
 
         if (id == R.id.lbc_express) {
             transaction.setCourier(Transaction.Courier.LBC);
+            setSelectedCourier("lbc", selectedCourier);
         } else if (id == R.id.courier_2go) {
             transaction.setCourier(Transaction.Courier.TWO_GO);
+            setSelectedCourier("2go", selectedCourier);
         } else if (id == R.id.jrs_express) {
             transaction.setCourier(Transaction.Courier.JRS);
+            setSelectedCourier("jrs", selectedCourier);
         } else if (id == R.id.next_btn) {
             page2ReadyListener.onPage2Ready(transaction);
         }
+    }
+
+    private void setSelectedCourier(String newCourier,String oldCourier)
+    {
+        if(!oldCourier.equals(newCourier)){
+            if(oldCourier.equals("lbc")){
+                lbc_express.setBackground(null);
+                lbc_express.setTextColor(getResources().getColor(R.color.colorPrimary));
+            } else if(oldCourier.equals("jrs")){
+                jrs_express.setBackground(null);
+                jrs_express.setTextColor(getResources().getColor(R.color.colorPrimary));
+            } else if(oldCourier.equals("2go")){
+                courier_2go.setBackground(null);
+                courier_2go.setTextColor(getResources().getColor(R.color.colorPrimary));
+            }
+            selectedCourier = newCourier;
+            if(newCourier.equals("lbc")){
+                lbc_express.setBackground(getResources().getDrawable(R.drawable.oval));
+                lbc_express.setTextColor(getResources().getColor(android.R.color.white));
+                lbc_express.setTypeface(null, Typeface.BOLD);
+            } else if(newCourier.equals("jrs")){
+                jrs_express.setBackground(getResources().getDrawable(R.drawable.oval));
+                jrs_express.setTextColor(getResources().getColor(android.R.color.white));
+                jrs_express.setTypeface(null, Typeface.BOLD);
+            } else if(newCourier.equals("2go")){
+                courier_2go.setBackground(getResources().getDrawable(R.drawable.oval));
+                courier_2go.setTextColor(getResources().getColor(android.R.color.white));
+                courier_2go.setTypeface(null, Typeface.BOLD);
+            }
+        }
+
     }
 
     @Override
