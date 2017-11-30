@@ -2,30 +2,23 @@ package com.berstek.paywiz.views.user_profile;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
-import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.graphics.Palette;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.berstek.paywiz.R;
 import com.berstek.paywiz.data_access.ContactDA;
-import com.berstek.paywiz.data_access.DA;
 import com.berstek.paywiz.data_access.UserDA;
 import com.berstek.paywiz.models.Feedback;
-import com.berstek.paywiz.models.Transaction;
 import com.berstek.paywiz.models.User;
 import com.berstek.paywiz.utils.CustomImageUtils;
 import com.berstek.paywiz.utils.UserUtils;
 import com.berstek.paywiz.views.feedback.FeedbacksAdapter;
-import com.berstek.paywiz.views.home.HomeActivity;
-import com.berstek.paywiz.views.transactions.TransactionsAdapter;
 import com.bumptech.glide.Glide;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -70,7 +63,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         backImg = findViewById(R.id.back_img);
         nameTxt = findViewById(R.id.name_txt);
         addContactBtn = findViewById(R.id.add_contact_btn);
-        addressTxt = findViewById(R.id.address_txt);
+        addressTxt = findViewById(R.id.address_edit);
         phoneTxt = findViewById(R.id.phone_txt);
 
         BitmapDrawable img = (BitmapDrawable) dpBlurred.getDrawable();

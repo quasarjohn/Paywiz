@@ -10,11 +10,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.berstek.paywiz.MainActivity;
 import com.berstek.paywiz.R;
 import com.berstek.paywiz.models.Transaction;
 import com.berstek.paywiz.utils.CustomImageUtils;
-import com.berstek.paywiz.views.home.HomeActivity;
 import com.berstek.paywiz.views.user_profile.ProfileActivity;
 
 import java.util.ArrayList;
@@ -63,7 +61,7 @@ public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsAdapte
 
         public ListHolder(View itemView) {
             super(itemView);
-            productImg = itemView.findViewById(R.id.product_image);
+            productImg = itemView.findViewById(R.id.recview_images);
             dp = itemView.findViewById(R.id.profile_image);
             product_name = itemView.findViewById(R.id.product_name_textview);
             product_quality = itemView.findViewById(R.id.product_quality_textview);

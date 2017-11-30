@@ -82,7 +82,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/dp" />
 
                 <TextView
-                    android:id="@+id/address_txt"
+                    android:id="@+id/address_edit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/ic_location"
@@ -103,9 +103,9 @@
                     android:drawableLeft="@drawable/ic_phone"
                     android:text="  +639212849365"
                     android:textColor="@android:color/white"
-                    app:layout_constraintEnd_toEndOf="@+id/address_txt"
-                    app:layout_constraintStart_toStartOf="@+id/address_txt"
-                    app:layout_constraintTop_toBottomOf="@+id/address_txt" />
+                    app:layout_constraintEnd_toEndOf="@+id/address_edit"
+                    app:layout_constraintStart_toStartOf="@+id/address_edit"
+                    app:layout_constraintTop_toBottomOf="@+id/address_edit" />
 
                 <TextView
                     android:id="@+id/rating_txt"

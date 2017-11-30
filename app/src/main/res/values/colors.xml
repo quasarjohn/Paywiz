@@ -11,8 +11,8 @@
 
     <color name="colorPrimary">#4caf50</color>
     <color name="colorPrimaryDark">#087f23</color>
-    <color name="colorAccent">#ffffff</color>
-    <color name="colorAccentDark">#ffffff</color>
+    <color name="colorAccent">#4caf50</color>
+    <color name="colorAccentDark">#087f23</color>
 
     <color name="colorBackgroundMaterial">#eeeeee</color>
 

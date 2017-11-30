@@ -69,7 +69,7 @@ public class HomeActivity extends AppCompatActivity
         dpBlurred = navHeader.findViewById(R.id.dp_blurred);
         dp = navHeader.findViewById(R.id.dp);
         nameTxt = navHeader.findViewById(R.id.name_txt);
-        addressTxt = navHeader.findViewById(R.id.address_txt);
+        addressTxt = navHeader.findViewById(R.id.address_edit);
         phoneTxt = navHeader.findViewById(R.id.phone_txt);
         payIDTxt = navHeader.findViewById(R.id.pay_id);
         ratingTxt = navHeader.findViewById(R.id.rating_txt);
