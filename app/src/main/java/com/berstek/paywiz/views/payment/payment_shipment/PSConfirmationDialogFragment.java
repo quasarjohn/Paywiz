@@ -3,6 +3,7 @@ package com.berstek.paywiz.views.payment.payment_shipment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,13 +60,14 @@ public class PSConfirmationDialogFragment extends CustomDialogFragment
         view = inflater.inflate(R.layout.fragment_psconfirmation_dialog, container,
                 false);
 
-        new TestDA().writeToConsole1(transaction.getReceiver_uid());
 
         userDA = new UserDA();
         businessSettingsDA = new BusinessSettingsDA();
 
         transactions = getArguments().getParcelableArrayList("transactions");
         transaction = (Transaction) transactions.get(0);
+
+        description = view.findViewById(R.id.description);
 
         cancel = view.findViewById(R.id.cancel);
         confirm = view.findViewById(R.id.confirm);
@@ -97,8 +99,35 @@ public class PSConfirmationDialogFragment extends CustomDialogFragment
         due_date.setText(CustomUtils.parseDateMMdd(transaction.getExpiration_date()));
         address.setText(transaction.getAddress());
         payment.setText(CustomUtils.formatDF(transaction.getAmount()));
+        title.setText(transaction.getTitle());
+        details.setText(transaction.getDetail());
 
-        //load recipient data
+        switch (transaction.getTransaction_type()) {
+            case DOOR:
+                transaction_type.setText("DIRECT SHIPPING");
+                break;
+            case PICKUP:
+                transaction_type.setText("PICKUP");
+                break;
+            default:
+                break;
+        }
+
+        switch (transaction.getCourier()) {
+            case JRS:
+                courier.setImageDrawable(getResources().getDrawable(R.drawable.ic_jrs));
+                break;
+            case LBC:
+                courier.setImageDrawable(getResources().getDrawable(R.drawable.ic_lbc));
+                break;
+            case TWO_GO:
+                courier.setImageDrawable(getResources().getDrawable(R.drawable.ic_2go));
+                break;
+            default:
+                break;
+        }
+
+//        load recipient data
         userDA.queryUserByUID(transaction.getReceiver_uid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -126,11 +155,13 @@ public class PSConfirmationDialogFragment extends CustomDialogFragment
             public void onDataChange(DataSnapshot dataSnapshot) {
                 BusinessSettings businessSettings = dataSnapshot.getValue(BusinessSettings.class);
                 transaction.setTrans_charge(businessSettings.getTrans_charge());
-                charge.setText(CustomUtils.formatDF(transaction.getTrans_charge()));
                 double percentCharge = transaction.getAmount() * businessSettings.getPercentage();
                 transaction.setPercent_charge(percentCharge);
+
                 double totalCharge = percentCharge + transaction.getTrans_charge();
-                total.setText(CustomUtils.formatDF(totalCharge));
+                charge.setText(CustomUtils.formatDF(totalCharge));
+
+                total.setText("PHP " + CustomUtils.formatDF(totalCharge + transaction.getAmount()));
 
                 description.setText(businessSettings.getTrans_charge()
                         + " + " + businessSettings.getPercentage() * 100 + " of total payment");

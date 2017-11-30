@@ -16,9 +16,11 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.berstek.paywiz.R;
+import com.berstek.paywiz.data_access.TestDA;
 import com.berstek.paywiz.data_access.UserDA;
 import com.berstek.paywiz.models.Transaction;
 import com.berstek.paywiz.models.User;
+import com.berstek.paywiz.utils.CustomUtils;
 import com.berstek.paywiz.utils.UserUtils;
 import com.berstek.paywiz.views.parent_layouts.FragmentWithBackAndNext;
 import com.google.firebase.database.DataSnapshot;
@@ -107,6 +109,7 @@ public class PSPage2 extends FragmentWithBackAndNext implements View.OnClickList
 
 
     private void loadTransactionData() {
+        seekbar_days.setText(CustomUtils.parseDateMMdd(transaction.getExpiration_date()));
         amount.setText(transaction.getAmount() + "");
         product_name.setText(transaction.getTitle());
         product_details.setText(transaction.getDetail());
@@ -174,10 +177,15 @@ public class PSPage2 extends FragmentWithBackAndNext implements View.OnClickList
 
     @Override
     public void onCheckedChanged(RadioGroup radioGroup, int i) {
+
+        new TestDA().writeToConsole1("CHECK CHANGED");
+
         if (i == R.id.pickup) {
-            transaction.setTransaction_type(Transaction.ShippingType.DOOR);
-        } else {
+            new TestDA().writeToConsole1("DOOR");
             transaction.setTransaction_type(Transaction.ShippingType.PICKUP);
+        } else {
+            new TestDA().writeToConsole1("PICKUP");
+            transaction.setTransaction_type(Transaction.ShippingType.DOOR);
         }
     }
 

@@ -1,12 +1,15 @@
 package com.berstek.paywiz.views.payment.payment_shipment;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.berstek.paywiz.R;
 import com.berstek.paywiz.callbacks.ConfirmationDialogListener;
+import com.berstek.paywiz.data_access.TransactionDA;
 import com.berstek.paywiz.models.Transaction;
 import com.berstek.paywiz.utils.UserUtils;
+import com.berstek.paywiz.views.home.HomeActivity;
 
 import java.util.ArrayList;
 
@@ -22,6 +25,7 @@ public class PaymentShipmentActivity extends AppCompatActivity
     4. Confirmation Dialog
      */
 
+    private TransactionDA transactionDA;
     private Transaction transaction;
     private String receiver_uid;
     private PSConfirmationDialogFragment dialogFragment;
@@ -31,12 +35,20 @@ public class PaymentShipmentActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_shipment);
 
+        transactionDA = new TransactionDA();
+
         receiver_uid = getIntent().getExtras().getString("receiver_uid");
 
         transaction = new Transaction();
         transaction.setSender_uid(UserUtils.getUID());
         transaction.setStatus(Transaction.Status.AWAITING_ACCEPTANCE);
         transaction.setCreation_date(System.currentTimeMillis());
+        //default due date is the same day the payment is made
+        transaction.setExpiration_date(transaction.getCreation_date());
+        transaction.setReceiver_uid(receiver_uid);
+        transaction.setStatus(Transaction.Status.AWAITING_ACCEPTANCE);
+        //default courier
+        transaction.setCourier(Transaction.Courier.LBC);
 
         PSPage1 page1 = new PSPage1();
         getSupportFragmentManager().beginTransaction().replace(R.id.activity_payment, page1).commit();
@@ -75,7 +87,13 @@ public class PaymentShipmentActivity extends AppCompatActivity
 
     @Override
     public void onAgree() {
+        transactionDA.addTransaction(transaction);
+        dialogFragment.dismiss();
 
+        Intent intent = new Intent(this, HomeActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 
     @Override
