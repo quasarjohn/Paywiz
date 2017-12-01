@@ -11,6 +11,8 @@ import com.berstek.paywiz.models.Transaction;
 import com.berstek.paywiz.utils.UserUtils;
 import com.berstek.paywiz.views.home.HomeActivity;
 
+import org.apache.commons.lang3.RandomStringUtils;
+
 import java.util.ArrayList;
 
 public class PaymentShipmentActivity extends AppCompatActivity
@@ -87,6 +89,7 @@ public class PaymentShipmentActivity extends AppCompatActivity
 
     @Override
     public void onAgree() {
+        transaction.setTransaction_code(RandomStringUtils.randomAlphanumeric(8).toUpperCase());
         transactionDA.addTransaction(transaction);
         dialogFragment.dismiss();
 

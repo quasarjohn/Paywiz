@@ -18,7 +18,6 @@ public class CustomUtils {
         return false;
     }
 
-
     public static String formatDF(double num) {
         DecimalFormat df = new DecimalFormat("0.00");
 
@@ -27,6 +26,11 @@ public class CustomUtils {
 
     public static String parseDateMMdd(long d) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd");
+        return dateFormat.format(new Date(d));
+    }
+
+    public static String parseDateMMddYYYY(long d) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM dd, yyyy");
         return dateFormat.format(new Date(d));
     }
 }

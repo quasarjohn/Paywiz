@@ -12,15 +12,22 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.berstek.paywiz.R;
+import com.berstek.paywiz.data_access.DA;
+import com.berstek.paywiz.data_access.TransactionDA;
 import com.berstek.paywiz.models.Contact;
 import com.berstek.paywiz.models.Transaction;
 import com.berstek.paywiz.models.User;
+import com.berstek.paywiz.utils.UserUtils;
 import com.berstek.paywiz.views.payment.PaymentTypeActivity;
 import com.berstek.paywiz.views.payment.payment_shipment.PSConfirmationDialogFragment;
 import com.berstek.paywiz.views.payment.payment_shipment.PaymentShipmentActivity;
 import com.berstek.paywiz.views.search.SearchContactsAdapter;
 import com.berstek.paywiz.views.search.SearchResultsAdapter;
 import com.berstek.paywiz.views.search.SearchUserDialogFragment;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -64,15 +71,39 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
 
     private void loadTransactions() {
         //TODO fetch data from database
-        ArrayList<Transaction> transactions = new ArrayList<>();
-        Transaction transaction = new Transaction();
-
-        for (int i = 0; i < 20; i++) {
-            transactions.add(transaction);
-        }
-
-        TransactionsAdapter adapter = new TransactionsAdapter(getContext(), transactions);
+        final ArrayList<Transaction> transactions = new ArrayList<>();
+        final TransactionsAdapter adapter = new TransactionsAdapter(getContext(), transactions);
         recyclerView.setAdapter(adapter);
+
+        TransactionDA transactionDA = new TransactionDA();
+        transactionDA.queryTransactionsBySender(UserUtils.getUID()).addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Transaction transaction = dataSnapshot.getValue(Transaction.class);
+                transactions.add(transaction);
+                adapter.notifyItemInserted(transactions.size() - 1);
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     @Override
