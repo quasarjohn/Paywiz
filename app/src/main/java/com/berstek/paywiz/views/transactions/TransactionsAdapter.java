@@ -76,7 +76,7 @@ public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsAdapte
             holder.price.setTextColor(context.getResources().getColor(R.color.colorPrimary));
         }
 
-        //test commit
+        //test commit 2
 
         userDA.queryUserByUID(uidToLoad).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
