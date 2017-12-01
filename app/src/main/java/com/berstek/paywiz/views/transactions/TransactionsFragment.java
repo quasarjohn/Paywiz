@@ -12,22 +12,16 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.berstek.paywiz.R;
-import com.berstek.paywiz.data_access.DA;
+import com.berstek.paywiz.callbacks.ChildEventCallback;
 import com.berstek.paywiz.data_access.TransactionDA;
-import com.berstek.paywiz.models.Contact;
 import com.berstek.paywiz.models.Transaction;
-import com.berstek.paywiz.models.User;
 import com.berstek.paywiz.utils.UserUtils;
 import com.berstek.paywiz.views.payment.PaymentTypeActivity;
 import com.berstek.paywiz.views.payment.payment_shipment.PSConfirmationDialogFragment;
-import com.berstek.paywiz.views.payment.payment_shipment.PaymentShipmentActivity;
-import com.berstek.paywiz.views.search.SearchContactsAdapter;
-import com.berstek.paywiz.views.search.SearchResultsAdapter;
-import com.berstek.paywiz.views.search.SearchUserDialogFragment;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.Query;
 
 import java.util.ArrayList;
 
@@ -39,11 +33,13 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
     private View view;
     private RecyclerView recyclerView;
     private ImageView cashin, cashout, send, receive;
+    private ReceivedTransactionsChildListener rc;
+    private SentTransactionsChildListener sc;
+    private Query sentTransationsQuery, receivedTransactionsQuery;
 
     public TransactionsFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -76,34 +72,43 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
         recyclerView.setAdapter(adapter);
 
         TransactionDA transactionDA = new TransactionDA();
-        transactionDA.queryTransactionsBySender(UserUtils.getUID()).addChildEventListener(new ChildEventListener() {
+
+        rc = new ReceivedTransactionsChildListener();
+        sc = new SentTransactionsChildListener();
+
+        rc.setChildEventCallback(new ChildEventCallback() {
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+            public void onChildAdded(DataSnapshot dataSnapshot) {
                 Transaction transaction = dataSnapshot.getValue(Transaction.class);
                 transactions.add(transaction);
                 adapter.notifyItemInserted(transactions.size() - 1);
             }
 
             @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onChildChanged(DataSnapshot dataSnapshot) {
 
             }
         });
+
+        sc.setChildEventCallback(new ChildEventCallback() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot) {
+                Transaction transaction = dataSnapshot.getValue(Transaction.class);
+                transactions.add(transaction);
+                adapter.notifyItemInserted(transactions.size() - 1);
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot) {
+
+            }
+        });
+
+        sentTransationsQuery = transactionDA.queryTransactionsBySender(UserUtils.getUID());
+        sentTransationsQuery.addChildEventListener(rc);
+
+        receivedTransactionsQuery = transactionDA.queryTransactionsByReceiver(UserUtils.getUID());
+        receivedTransactionsQuery.addChildEventListener(sc);
     }
 
     @Override
@@ -122,5 +127,19 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
         } else if (id == R.id.cashout) {
 
         }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        sentTransationsQuery.removeEventListener(sc);
+        receivedTransactionsQuery.removeEventListener(sc);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        sentTransationsQuery.removeEventListener(sc);
+        receivedTransactionsQuery.removeEventListener(sc);
     }
 }
