@@ -66,7 +66,6 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
     }
 
     private void loadTransactions() {
-        //TODO fetch data from database
         final ArrayList<Transaction> transactions = new ArrayList<>();
         final TransactionsAdapter adapter = new TransactionsAdapter(getContext(), transactions);
         recyclerView.setAdapter(adapter);
@@ -104,6 +103,7 @@ public class TransactionsFragment extends Fragment implements View.OnClickListen
             }
         });
 
+        //query sent and received transactions from the database and add listeners to them
         sentTransationsQuery = transactionDA.queryTransactionsBySender(UserUtils.getUID());
         sentTransationsQuery.addChildEventListener(rc);
 

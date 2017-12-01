@@ -153,32 +153,31 @@ public class PSPage2 extends FragmentWithBackAndNext implements View.OnClickList
 
         if (id == R.id.lbc_express) {
             transaction.setCourier(Transaction.Courier.LBC);
-            setSelectedCourier("lbc", selectedCourier,lbc_express);
+            setSelectedCourier("lbc", selectedCourier, lbc_express);
         } else if (id == R.id.courier_2go) {
             transaction.setCourier(Transaction.Courier.TWO_GO);
-            setSelectedCourier("2go", selectedCourier,courier_2go);
+            setSelectedCourier("2go", selectedCourier, courier_2go);
         } else if (id == R.id.jrs_express) {
             transaction.setCourier(Transaction.Courier.JRS);
-            setSelectedCourier("jrs", selectedCourier,jrs_express);
+            setSelectedCourier("jrs", selectedCourier, jrs_express);
         } else if (id == R.id.next_btn) {
             page2ReadyListener.onPage2Ready(transaction);
         }
     }
 
-    private void setSelectedCourier(String newCourier,String oldCourier, TextView newCourierTextView)
-    {
+    private void setSelectedCourier(String newCourier, String oldCourier, TextView newCourierTextView) {
         TextView oldCourierTextView = null;
-        if(!oldCourier.equals(newCourier)){
-            if(oldCourier.equals("lbc")){
-                oldCourierTextView=lbc_express;
-            } else if(oldCourier.equals("jrs")){
-                oldCourierTextView=jrs_express;
-            } else if(oldCourier.equals("2go")){
-                oldCourierTextView=courier_2go;
+        if (!oldCourier.equals(newCourier)) {
+            if (oldCourier.equals("lbc")) {
+                oldCourierTextView = lbc_express;
+            } else if (oldCourier.equals("jrs")) {
+                oldCourierTextView = jrs_express;
+            } else if (oldCourier.equals("2go")) {
+                oldCourierTextView = courier_2go;
             }
             oldCourierTextView.setBackground(null);
             oldCourierTextView.setTextColor(getResources().getColor(R.color.colorPrimary));
-            oldCourierTextView.setTypeface(null,Typeface.ITALIC);
+            oldCourierTextView.setTypeface(null, Typeface.ITALIC);
 
             selectedCourier = newCourier;
             newCourierTextView.setBackgroundResource(R.drawable.oval);
@@ -186,9 +185,6 @@ public class PSPage2 extends FragmentWithBackAndNext implements View.OnClickList
             newCourierTextView.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
             newCourierTextView.setTextColor(getResources().getColor(android.R.color.white));
             newCourierTextView.setTypeface(null, Typeface.BOLD_ITALIC);
-
-
-
         }
 
     }
