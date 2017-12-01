@@ -139,7 +139,7 @@
             android:layout_marginTop="8dp"
             android:background="@drawable/oval"
             android:backgroundTint="@color/colorPrimary"
-            android:padding="6dp"
+            android:padding="4dp"
             android:text="LBC Express"
             android:textColor="@android:color/white"
             android:textSize="12sp"
@@ -152,24 +152,29 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/oval"
+            android:padding="4dp"
             android:text="JRS Express"
             android:textColor="@color/colorPrimary"
             android:textSize="12sp"
             android:textStyle="italic"
             app:layout_constraintStart_toEndOf="@+id/lbc_express"
-            app:layout_constraintTop_toTopOf="@+id/lbc_express" />
+            app:layout_constraintTop_toBottomOf="@+id/Courier" />
 
         <TextView
             android:id="@+id/courier_2go"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:padding="4dp"
             android:text="2GO"
             android:textColor="@color/colorPrimary"
             android:textSize="12sp"
             android:textStyle="italic"
             app:layout_constraintStart_toEndOf="@+id/jrs_express"
-            app:layout_constraintTop_toTopOf="@+id/jrs_express" />
+            app:layout_constraintTop_toBottomOf="@+id/Courier" />
 
         <SeekBar
             android:id="@+id/seekbar"

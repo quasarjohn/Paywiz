@@ -2,9 +2,15 @@ package com.berstek.paywiz.views.payment.payment_shipment;
 
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -24,9 +30,12 @@ import com.berstek.paywiz.models.User;
 import com.berstek.paywiz.utils.CustomUtils;
 import com.berstek.paywiz.utils.UserUtils;
 import com.berstek.paywiz.views.parent_layouts.FragmentWithBackAndNext;
+import com.bumptech.glide.load.engine.Resource;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
+
+import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -144,45 +153,42 @@ public class PSPage2 extends FragmentWithBackAndNext implements View.OnClickList
 
         if (id == R.id.lbc_express) {
             transaction.setCourier(Transaction.Courier.LBC);
-            setSelectedCourier("lbc", selectedCourier);
+            setSelectedCourier("lbc", selectedCourier,lbc_express);
         } else if (id == R.id.courier_2go) {
             transaction.setCourier(Transaction.Courier.TWO_GO);
-            setSelectedCourier("2go", selectedCourier);
+            setSelectedCourier("2go", selectedCourier,courier_2go);
         } else if (id == R.id.jrs_express) {
             transaction.setCourier(Transaction.Courier.JRS);
-            setSelectedCourier("jrs", selectedCourier);
+            setSelectedCourier("jrs", selectedCourier,jrs_express);
         } else if (id == R.id.next_btn) {
             page2ReadyListener.onPage2Ready(transaction);
         }
     }
 
-    private void setSelectedCourier(String newCourier,String oldCourier)
+    private void setSelectedCourier(String newCourier,String oldCourier, TextView newCourierTextView)
     {
+        TextView oldCourierTextView = null;
         if(!oldCourier.equals(newCourier)){
             if(oldCourier.equals("lbc")){
-                lbc_express.setBackground(null);
-                lbc_express.setTextColor(getResources().getColor(R.color.colorPrimary));
+                oldCourierTextView=lbc_express;
             } else if(oldCourier.equals("jrs")){
-                jrs_express.setBackground(null);
-                jrs_express.setTextColor(getResources().getColor(R.color.colorPrimary));
+                oldCourierTextView=jrs_express;
             } else if(oldCourier.equals("2go")){
-                courier_2go.setBackground(null);
-                courier_2go.setTextColor(getResources().getColor(R.color.colorPrimary));
+                oldCourierTextView=courier_2go;
             }
+            oldCourierTextView.setBackground(null);
+            oldCourierTextView.setTextColor(getResources().getColor(R.color.colorPrimary));
+            oldCourierTextView.setTypeface(null,Typeface.ITALIC);
+
             selectedCourier = newCourier;
-            if(newCourier.equals("lbc")){
-                lbc_express.setBackground(getResources().getDrawable(R.drawable.oval));
-                lbc_express.setTextColor(getResources().getColor(android.R.color.white));
-                lbc_express.setTypeface(null, Typeface.BOLD);
-            } else if(newCourier.equals("jrs")){
-                jrs_express.setBackground(getResources().getDrawable(R.drawable.oval));
-                jrs_express.setTextColor(getResources().getColor(android.R.color.white));
-                jrs_express.setTypeface(null, Typeface.BOLD);
-            } else if(newCourier.equals("2go")){
-                courier_2go.setBackground(getResources().getDrawable(R.drawable.oval));
-                courier_2go.setTextColor(getResources().getColor(android.R.color.white));
-                courier_2go.setTypeface(null, Typeface.BOLD);
-            }
+            newCourierTextView.setBackgroundResource(R.drawable.oval);
+            newCourierTextView.setBackground(getResources().getDrawable(R.drawable.oval));
+            newCourierTextView.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+            newCourierTextView.setTextColor(getResources().getColor(android.R.color.white));
+            newCourierTextView.setTypeface(null, Typeface.BOLD_ITALIC);
+
+
+
         }
 
     }
