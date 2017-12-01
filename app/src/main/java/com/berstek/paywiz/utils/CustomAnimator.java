@@ -6,7 +6,6 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.view.View;
 
-
 public class CustomAnimator {
 
     public static AnimatorSet animateAlpha(View v) {

@@ -12,6 +12,7 @@ public class Transaction implements Serializable {
     private double amount;
 
     //optional attribs for payment for shipment
+    private String transaction_code;
     private double trans_charge, percent_charge;
     private long expiration_date, accepted_date, shipment_date;
     private String address;
@@ -168,5 +169,13 @@ public class Transaction implements Serializable {
 
     public void setImg_urls(ArrayList<String> img_urls) {
         this.img_urls = img_urls;
+    }
+
+    public String getTransaction_code() {
+        return transaction_code;
+    }
+
+    public void setTransaction_code(String transaction_code) {
+        this.transaction_code = transaction_code;
     }
 }
