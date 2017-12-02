@@ -182,7 +182,6 @@ public class PSPage2 extends FragmentWithBackAndNext implements View.OnClickList
 
             selectedCourier = newCourier;
             newCourierTextView.setBackgroundResource(R.drawable.oval);
-            newCourierTextView.setBackground(getResources().getDrawable(R.drawable.oval));
             newCourierTextView.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
             newCourierTextView.setTextColor(getResources().getColor(android.R.color.white));
             newCourierTextView.setTypeface(null, Typeface.BOLD_ITALIC);
