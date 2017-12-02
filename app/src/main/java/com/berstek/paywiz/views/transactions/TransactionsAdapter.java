@@ -3,6 +3,7 @@ package com.berstek.paywiz.views.transactions;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -68,10 +69,14 @@ public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsAdapte
         if (UserUtils.getUID().equals(transaction.getSender_uid())) {
             uidToLoad = transaction.getReceiver_uid();
             identity = "Recipient";
+            holder.price.setTextColor(context.getResources().getColor(R.color.custom_red));
         } else {
             uidToLoad = transaction.getSender_uid();
             identity = "Sender";
+            holder.price.setTextColor(context.getResources().getColor(R.color.colorPrimary));
         }
+
+        //test commit 2
 
         userDA.queryUserByUID(uidToLoad).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
